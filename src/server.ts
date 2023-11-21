@@ -36,5 +36,5 @@ mongoose
 
 app.listen(port, async () => {
   console.log('Server running http://localhost:' + port)
-  await connectDB();
+   connectDB();
 })

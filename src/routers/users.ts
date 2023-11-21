@@ -2,6 +2,7 @@ import express from 'express'
 
 import ApiError from '../errors/ApiError'
 import User from '../models/user'
+import { getAllUsers, getSingleUser } from '../controller/users'
 const router = express.Router()
 
 router.param('userId', (req, res, next, userId) => {
@@ -47,19 +48,9 @@ router.post('/', (req, res, next) => {
   })
 })
 
-router.get('/:userId/page/:page', (req, res) => {
-  res.json({
-    msg: 'done',
-    user: req.user,
-  })
-})
+router.get('/:userId/page/:page', getSingleUser)
 
-router.get('/', async (_, res) => {
-  const users = await User.find().populate('order')
-  res.json({
-    users,
-  })
-})
+router.get('/', getAllUsers)
 
 export default router
 

@@ -24,3 +24,9 @@ Method: GET, Path: /api/users, Date: 9/19/2022, Time: 2:48:09 PM
 Method: GET, Path: /api/users, Date: 9/19/2022, Time: 2:48:24 PM
 Method: GET, Path: /api/products, Date: ٧‏/٥‏/١٤٤٥ هـ, Time: ٢:٤٩:١٠ م
 Method: GET, Path: /api/products, Date: ٧‏/٥‏/١٤٤٥ هـ, Time: ٢:٥٥:٢٦ م
+Method: GET, Path: /api/products, Date: ٧‏/٥‏/١٤٤٥ هـ, Time: ٣:٤٥:٢٥ م
+Method: GET, Path: /api/products, Date: ٧‏/٥‏/١٤٤٥ هـ, Time: ٣:٤٨:٢٧ م
+Method: GET, Path: /api/products, Date: ٧‏/٥‏/١٤٤٥ هـ, Time: ٣:٤٨:٣٠ م
+Method: GET, Path: /api/products, Date: ٧‏/٥‏/١٤٤٥ هـ, Time: ٣:٥١:١٦ م
+Method: GET, Path: /favicon.ico, Date: ٧‏/٥‏/١٤٤٥ هـ, Time: ٣:٥١:١٩ م
+Method: GET, Path: /api/products, Date: ٧‏/٥‏/١٤٤٥ هـ, Time: ٤:٢١:٣٤ م
