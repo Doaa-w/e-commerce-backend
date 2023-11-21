@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Application } from 'express'
 import mongoose from 'mongoose'
 import { config } from 'dotenv'
 
@@ -7,14 +7,16 @@ import productsRouter from './routers/products'
 import ordersRouter from './routers/orders'
 import apiErrorHandler from './middlewares/errorHandler'
 import myLogger from './middlewares/logger'
+import {dev} from "./config"
+import { connectDB } from './config/db'
 
-config()
-const app = express()
-const PORT = 5050
-const URL = process.env.ATLAS_URL as string
+
+const app: Application = express()
+const port:number = dev.app.port
+const URL = dev.db.url  as string
 
 app.use(myLogger)
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 app.use('/api/users', usersRouter)
@@ -32,6 +34,7 @@ mongoose
     console.log('MongoDB connection error, ', err)
   })
 
-app.listen(PORT, () => {
-  console.log('Server running http://localhost:' + PORT)
+app.listen(port, async () => {
+  console.log('Server running http://localhost:' + port)
+  await connectDB();
 })

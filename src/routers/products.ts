@@ -1,32 +1,16 @@
-import express from 'express';
+import { Router } from 'express';
 
-const router = express.Router()
+
 
 import Product from '../models/product'
 import Order from '../models/order'
 import ApiError from '../errors/ApiError'
 
-router.get('/', async (_, res) => {
-  const products = await Product.find()
-  console.log('products:', products)
-  res.json(products)
-})
+import { createProduct, getAllProducts } from '../controller/products';
 
-router.post('/', async (req, res, next) => {
-  const { name, description, quantity } = req.body
+const router = Router()
+router.get('/', getAllProducts)
 
-  if (!name || !description) {
-    next(ApiError.badRequest('Name and Description are requried'))
-    return
-  }
-  const product = new Product({
-    name,
-    description,
-    quantity,
-  })
-
-  await product.save()
-  res.json(product)
-})
+router.post('/', createProduct)
 
 export default router
