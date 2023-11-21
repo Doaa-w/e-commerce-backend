@@ -8,6 +8,8 @@ router.get('/', async (req, res) => {
   const orders = await Order.find().populate('products')
   res.json(orders)
 })
+//
+
 router.post('/', async (req, res, next) => {
   const { name, products } = req.body
 
