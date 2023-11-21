@@ -2,10 +2,13 @@ import mongoose from 'mongoose'
 
 const productSchema = new mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
       index: true,
       required: true,
+    },
+    price:{
+      type: Number,
     },
     description: {
       type: String,
