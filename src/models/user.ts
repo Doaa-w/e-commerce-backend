@@ -43,10 +43,6 @@ const userSchema = new mongoose.Schema({
     trim: true,
     minlength: [3, "address must be at least 3 characters"],
   },
-  image: {
-    type: String,
-    default: "public/images/users/default-user-img.png",
-  },
   isAdmin: {
     type: Boolean,
     default: false
@@ -58,9 +54,7 @@ const userSchema = new mongoose.Schema({
   // order: {
   // },
 },
-{
-  timestamps: true
-}
+{ timestamps: true }
 );
 
 export default mongoose.model<user>('User', userSchema);
