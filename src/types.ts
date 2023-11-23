@@ -5,7 +5,6 @@ export type user = {
     password: String,
     phone: String,
     address: String,
-    image: String,
     isAdmin: Boolean,
     isBanned: Boolean,
 }
