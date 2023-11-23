@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+import { Schema ,model } from "mongoose";
 
 
-export const categorySchema = new mongoose.Schema(
+export const categorySchema = new Schema(
     {
         name:{
             type: String,
@@ -11,10 +12,9 @@ export const categorySchema = new mongoose.Schema(
         },
         slug:{
             type: String,
-            require: true,
             lowercase: true,
         },
     },
     {timestamps: true}
 );
-export default mongoose.model("category", categorySchema)
+export const category = model("category", categorySchema)
