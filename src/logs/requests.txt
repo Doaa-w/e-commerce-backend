@@ -106,3 +106,13 @@ Method: POST, Path: /api/products, Date: 11/23/2023, Time: 8:22:59 AM
 Method: POST, Path: /api/products, Date: 11/23/2023, Time: 8:23:26 AM
 Method: POST, Path: /api/products, Date: 11/23/2023, Time: 8:24:08 AM
 Method: POST, Path: /api/products, Date: 11/23/2023, Time: 8:24:09 AM
+Method: GET, Path: /api/products, Date: 11/23/2023, Time: 8:24:48 AM
+Method: GET, Path: /api/products, Date: 11/23/2023, Time: 9:05:23 AM
+Method: GET, Path: /api/products, Date: 11/23/2023, Time: 9:05:25 AM
+Method: POST, Path: /api/products, Date: 11/23/2023, Time: 9:05:29 AM
+Method: GET, Path: /api/products, Date: 11/23/2023, Time: 10:00:47 AM
+Method: DELETE, Path: /api/products/655ee13eb87cfd7df360f5b6, Date: 11/23/2023, Time: 10:01:08 AM
+Method: DELETE, Path: /api/products/655ee13eb87cfd7df360f5b6, Date: 11/23/2023, Time: 10:01:59 AM
+Method: DELETE, Path: /api/products/655ee13eb87cfd7df360f5b6, Date: 11/23/2023, Time: 10:02:00 AM
+Method: DELETE, Path: /api/products/655ee13eb87cfd7df360f5b6, Date: 11/23/2023, Time: 10:02:04 AM
+Method: DELETE, Path: /api/products/655ee13eb87cfd7df360f5b6, Date: 11/23/2023, Time: 10:06:20 AM

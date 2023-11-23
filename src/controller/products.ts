@@ -29,7 +29,20 @@ export const createProduct = async (req: Request , res: Response , next:NextFunc
     next(error)
   }
 }
-
+export const deleteProduct = async (req: Request , res: Response , next:NextFunction)=> {
+  try {
+    const id = req.params.id
+    const deletedProduct = await product.findByIdAndDelete(id)
+    if (deletedProduct) {
+      res.status(200).json({
+        message: 'Product deleted',
+        payload: deletedProduct,
+      })
+    }
+  } catch (error) {
+    next(error)
+  }
+}
 
 
 
