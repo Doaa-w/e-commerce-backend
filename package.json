@@ -8,6 +8,8 @@
     "start": "nodemon --watch 'src/**/*.ts' --exec ts-node dist/server.js"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
     "express": "^4.18.2",
     "mongoose": "^6.12.3"
   },
