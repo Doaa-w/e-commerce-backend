@@ -1,6 +1,6 @@
-import "dotenv/config"
+import 'dotenv/config'
 
-export const dev ={
-    app:{port : Number(process.env.PORT)|| 3003},
-    db:{url : process.env.MONGODB_URL ||  'mongodb://0.0.0.0:27017/ecommerce-db'}
+export const dev = {
+  app: { port: Number(process.env.PORT) || 3003 },
+  db: { url: process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/ecommerce-db' },
 }
