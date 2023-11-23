@@ -1,26 +1,12 @@
-// import express from 'express';
+import express from 'express';
 
-// import { UpdateUser, createUser, deleteUser, getAllUsers, getSingleUser } from '../controller/users';
+import { getAllUsers } from '../controller/users';
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.get('/', getAllUsers);
-// router.post('/', createUser);
-// router.get('/:userId/page/:page', getSingleUser);
-// router.delete('/:userId', deleteUser);
-// router.put('/:userId', UpdateUser);
+router.get('/', getAllUsers);
 
-// // router.param('userId', (req, res, next, userId) => {
-// //   const user = users.find((user) => user.id === userId)
-// //   if (!user) {
-// //     next(ApiError.badRequest('user id is required.'))
-// //     return
-// //   }
-// //   req.user = user
-// //   next()
-// // })
-
-// export default router;
+export default router;
 
 // const users = [
 //   { id: 'e539c0be-b51c-4462-8162-55cf584d9589', first_name: 'ksoutherton0' },
