@@ -10,10 +10,12 @@ import myLogger from './middlewares/logger'
 import {dev} from "./config"
 import { connectDB } from './config/db'
 
+// import { config } from 'dotenv'
+config()
 
 const app: Application = express()
 const port:number = dev.app.port
-// const URL = dev.db.url  as string
+const URL = dev.db.url  as string
 
 app.use(myLogger)
 app.use(express.urlencoded({ extended: false }))
@@ -25,14 +27,14 @@ app.use('/api/products', productsRouter)
 
 app.use(apiErrorHandler)
 
-// mongoose
-//   .connect(URL)
-//   .then(() => {
-//     console.log('Database is connected')
-//   })
-//   .catch((err) => {
-//     console.log('MongoDB connection error, ', err)
-//   })
+mongoose
+  .connect(URL)
+  .then(() => {
+    console.log('Database is connected')
+  })
+  .catch((err) => {
+    console.log('MongoDB connection error, ', err)
+  })
 
 app.listen(port, async () => {
   console.log('Server running http://localhost:' + port)

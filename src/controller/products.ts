@@ -1,20 +1,47 @@
 import {Request,Response , NextFunction } from "express";
 import product from "../models/product";
+import { productInput } from "../types";
 
 
 export const getAllProducts = async (req: Request , res: Response , next:NextFunction)=>{
     try {
       const products = await product.find()
-        console.log('products:', products)
         res.status(200).json({message: 'all products are here' , payload:products})  
     } catch (error) {
         next(error)
     }
-        
-     
+
 }
 
 export const createProduct = async (req: Request , res: Response , next:NextFunction)=>{
+  try {
+    const { name, description, quantity } = req.body
+    const s_product = new product({
+      name,
+      description,
+      quantity,
+    })
+    await s_product.save()
+    console.log(s_product)
+
+    res.status(201).json({ message: 'all products are here', payload: s_product })
+  } catch (error) {
+    next(error)
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
     // const { name, description, quantity } = req.body
 
     // if (!name || !description) {
@@ -29,5 +56,3 @@ export const createProduct = async (req: Request , res: Response , next:NextFunc
   
     // await product.save()
     // res.json(product)
- 
-}
