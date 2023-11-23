@@ -1,54 +1,57 @@
-// import {Request, Response , NextFunction } from "express";
+import {Request, Response , NextFunction } from "express";
 
-// import User from '../models/user';
-// import ApiError from '../errors/ApiError'
+import ApiError from '../errors/ApiError';
 
-// export const getAllUsers = async (req: Request , res: Response , next:NextFunction)=>{
-//   const users = await User.find().populate('order');
-//   res.json({ 
-//     users
-//   });
-// };
+import User from '../models/user';
 
-// export const createUser = (req: Request , res: Response , next:NextFunction) => {
-//   const { id, first_name } = req.body
+export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const users = await User.find();
+        res.status(200).send({ 
+            message: 'All users are returned',
+            payload:  users
+        });
+    }
+    catch(error) {
+        next(error);
+    }
+};
 
-//   if (!id || !first_name) {
-//     next(ApiError.badRequest('id and username are required'))
-//     return
-//   }
-//   const updatedUsers = [{ id, first_name }, ...users]
-//   res.json({
-//     msg: 'done',
-//     users: updatedUsers,
-//   })
-// };
-
-// export const getSingleUser = (req: Request , res: Response , next:NextFunction)=>{
-//   try {
-//     res.status(200).json({ msg: 'done', user: req.user, }) 
-//   }
-//   catch (error) {
-//     next(error);
-//   }
-// };
-
-// export const UpdateUser = (req: Request , res: Response , next:NextFunction) => {
-//   const { first_name } = req.body
-
-//   const updatedUsers = users.map((user) => {
-//     if (user.id === req.user.id) {
-//       return {
-//         ...user,
-//         first_name,
-//       }
-//     }
-//     return user
-//   })
-//   res.json({ users: updatedUsers })
-// };
-
-// export const deleteUser = (req: Request , res: Response , next:NextFunction) => {
-//   const updatedUsers = users.filter((user) => user.id !== req.user.id)
-//   res.json({ users: updatedUsers })
-// };
+export const signup = async (req: Request, res: Response, next:NextFunction) => {
+    try {
+        const { first_name, last_name, email, password, phone } = req.body;
+        switch (true) {
+            case !first_name:
+                next(ApiError.badRequest('first name is required'));
+                return;
+            case !last_name:
+                next(ApiError.badRequest('last name is required'));
+                return;
+            case !email:
+                next(ApiError.badRequest('email is required'));
+                return;
+            case !password:
+                next(ApiError.badRequest('password is required'));
+                return;
+            case !phone:
+                next(ApiError.badRequest('phone number is required'));
+                return;
+        }
+        const userExist = await User.exists({email});
+        if (userExist) {
+            next(ApiError.badRequest('User account already exists'));
+        }
+        const user = new User ({
+            first_name,
+            last_name,
+            email,
+            password,
+            phone
+        });
+        await user.save();
+        res.status(201).send({ message: 'User account is created' });
+    }
+    catch(error) {
+        next(error);
+    }
+};
