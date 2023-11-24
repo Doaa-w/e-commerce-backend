@@ -95,3 +95,5 @@ Method: GET, Path: /api/users, Date: ٩‏/٥‏/١٤٤٥ هـ, Time: ٢:١٨:١
 Method: POST, Path: /api/users, Date: ٩‏/٥‏/١٤٤٥ هـ, Time: ٢:١٨:٥٩ م
 Method: GET, Path: /api/users, Date: ٩‏/٥‏/١٤٤٥ هـ, Time: ٢:١٩:٠٤ م
 Method: GET, Path: /api/users, Date: ٩‏/٥‏/١٤٤٥ هـ, Time: ٢:٤٠:٠٥ م
+Method: GET, Path: /, Date: ١٠‏/٥‏/١٤٤٥ هـ, Time: ٧:٣٤:٣٣ م
+Method: GET, Path: /api/users, Date: ١٠‏/٥‏/١٤٤٥ هـ, Time: ٧:٣٤:٣٨ م
