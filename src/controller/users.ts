@@ -17,25 +17,23 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
     }
 };
 
-export const signup = async (req: Request, res: Response, next:NextFunction) => {
+export const register = async (req: Request, res: Response, next:NextFunction) => {
     try {
         const { first_name, last_name, email, password, phone } = req.body;
-        switch (true) {
-            case !first_name:
-                next(ApiError.badRequest('first name is required'));
-                return;
-            case !last_name:
-                next(ApiError.badRequest('last name is required'));
-                return;
-            case !email:
-                next(ApiError.badRequest('email is required'));
-                return;
-            case !password:
-                next(ApiError.badRequest('password is required'));
-                return;
-            case !phone:
-                next(ApiError.badRequest('phone number is required'));
-                return;
+        if(!first_name) {
+            next(ApiError.badRequest('first name is required'));   
+        }
+        if (!last_name) {
+            next(ApiError.badRequest('last name is required'));   
+        }
+        if (!email) {
+            next(ApiError.badRequest('email is required'));
+        }
+        if (!password) {
+            next(ApiError.badRequest('password is required'));
+        }
+        if (!phone) {
+            next(ApiError.badRequest('phone number is required'));
         }
         const userExist = await User.exists({email});
         if (userExist) {
