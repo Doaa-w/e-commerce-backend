@@ -12,7 +12,7 @@ import apiErrorHandler from './middlewares/errorHandler';
 import myLogger from './middlewares/logger';
 
 const app: Application = express();
-const port:number = dev.app.port;
+const port: number = dev.app.port;
 // const URL = dev.db.url  as string
 
 app.use(myLogger);
