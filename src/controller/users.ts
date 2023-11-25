@@ -52,3 +52,20 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
         next(error);
     }
 };
+
+
+export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+    }
+    catch(error) {
+        next(error);
+    }
+}; 
+
+export const updateUserById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+    }
+    catch(error) {
+        next(error);
+    }
+};
