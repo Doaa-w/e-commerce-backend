@@ -1,13 +1,19 @@
-export type user = {
-    first_name: String,
-    last_name: String,
-    email: String,
-    password: String,
-    phone: String,
-    address: String,
-    isAdmin: Boolean,
-    isBanned: Boolean,
+export type UserType = {
+    _id: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    password: string;
+    phone: string;
+    address?: string;
+    isAdmin?: boolean;
+    isBanned?: boolean;
+    createdAt?: NativeDate;
+    updatedAt?: NativeDate;
 }
+
+export type UserInputType = Omit<UserType, '_id'>;
+
 export type category ={
     _id: string,
     name: string,

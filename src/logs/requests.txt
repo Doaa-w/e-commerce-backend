@@ -424,3 +424,6 @@ Method: DELETE, Path: /api/categories/nsamesj, Date: ١١‏/٥‏/١٤٤٥ هـ
 Method: POST, Path: /api/categories, Date: ١١‏/٥‏/١٤٤٥ هـ, Time: ٤:٥٠:٣٤ م
 Method: POST, Path: /api/categories, Date: ١١‏/٥‏/١٤٤٥ هـ, Time: ٤:٥٠:٣٦ م
 Method: POST, Path: /api/categories, Date: ١١‏/٥‏/١٤٤٥ هـ, Time: ٤:٥٠:٣٧ م
+Method: GET, Path: /, Date: ١٢‏/٥‏/١٤٤٥ هـ, Time: ١:٥٢:٣١ ص
+Method: GET, Path: /users, Date: ١٢‏/٥‏/١٤٤٥ هـ, Time: ١:٥٣:٠١ ص
+Method: GET, Path: /api/users, Date: ١٢‏/٥‏/١٤٤٥ هـ, Time: ١:٥٣:١٢ ص

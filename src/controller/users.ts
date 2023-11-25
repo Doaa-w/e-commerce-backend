@@ -1,11 +1,12 @@
-import { Request, Response , NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import ApiError from '../errors/ApiError';
 import User from '../models/user';
+import { findAllUsers } from "../services/userService";
 
 export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const users = await User.find();
+        const users = await findAllUsers();
         res.status(200).send({ 
             message: 'All users are returned',
             payload:  users
@@ -52,7 +53,6 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
         next(error);
     }
 };
-
 
 export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
