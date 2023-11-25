@@ -5,9 +5,9 @@ import { Schema ,model } from "mongoose";
     {
         name:{
             type : String,
-            require: true,
+            required: true,
             trim: true,
-            minlenght: [2, "category name should be more than 5 characters "],
+            minlenght: [2, "category name should be more than 2 characters "],
             maxlenght: [50 , "category name should be less than 50 characters"],
         },
         slug:{

@@ -8,7 +8,6 @@ import { categoryInput } from "../types";
 export const getAllCategories =  async (req: Request , res: Response , next:NextFunction)=>{
     try {
       const categories = await category.find() 
-        console.log('category:')
         res.status(200).json({message: 'all categories are here' , payload: categories})  
         console.log(categories)
     } catch (error) {
@@ -21,6 +20,9 @@ export const getSinglrCategory =  async (req: Request , res: Response , next:Nex
 try {
     const slug =req.params.slug
     const singleCategory = await category.findOne({slug: slug})
+    if(!singleCategory){
+      res.status(404).json({message: "category with this slug does not exists"})
+    }
     res.status(200).json({
         message: "single category is returned" ,
         payload: singleCategory
@@ -54,8 +56,14 @@ export const createCtegory =  async (req: Request , res: Response , next:NextFun
 export const deleteCategory =  async (req: Request , res: Response , next:NextFunction)=>{
     try {
       const id = req.params.id
-      await category.findByIdAndDelete(id)  
-      res.status(200).json({
+      const deletedCategory = await category.findByIdAndDelete(id)  
+      if(!deletedCategory){
+        res.status(404).json({
+          message: "category not found " ,
+          payload: deletedCategory
+        })
+      }
+      res.status(204).json({
         message: "category is deleted"
       })
 
