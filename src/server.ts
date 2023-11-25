@@ -1,18 +1,22 @@
 import express, { Application } from 'express'
+
+import { dev } from './config'
+import { connectDB } from './config/db'
+
+
 import mongoose from 'mongoose'
-import { config } from 'dotenv'
+//import { config } from 'dotenv'
 
 import usersRouter from './routers/users'
 import productsRouter from './routers/products'
 import ordersRouter from './routers/orders'
+
 import apiErrorHandler from './middlewares/errorHandler'
 import myLogger from './middlewares/logger'
-import { dev } from './config'
-import { connectDB } from './config/db'
 
 const app: Application = express()
 const port: number = dev.app.port
-const URL = dev.db.url  as string
+//const URL = dev.db.url  as string
 
 app.use(myLogger)
 app.use(express.urlencoded({ extended: false }))
@@ -24,14 +28,14 @@ app.use('/api/products', productsRouter)
 
 app.use(apiErrorHandler)
 
- mongoose
+ /*mongoose
    .connect('mongodb://127.0.0.1:27017/ecommerce-db')
   .then(() => {
     console.log('Database is connected')
   })
   .catch((err) => {
     console.log('MongoDB connection error, ', err)
-  })
+  })*/
 
 app.listen(port, async () => {
   console.log('Server running http://localhost:' + port)
