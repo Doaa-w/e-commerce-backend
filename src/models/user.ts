@@ -39,7 +39,6 @@ const userSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: true,
     trim: true,
     minlength: [3, "address must be at least 3 characters"],
   },
