@@ -16,3 +16,4 @@ export type category ={
     updatedAt?: NativeDate
 }
 
+export type categoryInput= Omit<category,'_id '>;
