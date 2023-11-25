@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt';
 
-import { user } from '../types';
+import { UserType } from '../types';
 
 const userSchema = new mongoose.Schema({
   first_name: {
@@ -56,4 +56,4 @@ const userSchema = new mongoose.Schema({
 { timestamps: true }
 );
 
-export default mongoose.model<user>('User', userSchema);
+export default mongoose.model<UserType>('User', userSchema);

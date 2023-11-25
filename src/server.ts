@@ -29,7 +29,7 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use('/api/products', productsRouter)
-app.use('/api/users', usersRouter)
+app.use('/api/users', usersRouter);
 app.use('/api/orders', ordersRouter)
 
 app.use(apiErrorHandler)
