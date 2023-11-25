@@ -1,8 +1,8 @@
 
 export type category ={
-    id: string,
+    _id: string,
     name: string,
     // slug: string,
 }
 
-export type categoryInput= Omit<category,'id '>;
+export type categoryInput= Omit<category,'_id '>;

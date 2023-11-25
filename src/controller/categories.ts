@@ -32,15 +32,14 @@ try {
 
 export const createCtegory =  async (req: Request , res: Response , next:NextFunction)=>{
   try {
-    const {name}: categoryInput =req.body
-    console.log(req.body)
+    const { name }: categoryInput = req.body
     const exsistCategory= await category.exists({name: name})
     if(exsistCategory){
         res.json({message: "category already exists"})
     }
-    const newCategory=new category({
+    const newCategory = new category({
         name,
-        slug:slugify(name)
+        slug: slugify(name),
     })
     await newCategory.save()
     res.status(201).json({

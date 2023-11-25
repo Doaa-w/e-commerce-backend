@@ -1,20 +1,21 @@
-import mongoose from "mongoose";
+
 import { Schema ,model } from "mongoose";
 
-
-export const categorySchema = new Schema(
+ const categorySchema = new Schema(
     {
         name:{
-            type: String,
+            type : String,
             require: true,
-            minlenght: [2, "category's name should be more than 5 characters "],
-            maxlenght: [50 , "category's name should be less than 50 characters"],
+            trim: true,
+            minlenght: [2, "category name should be more than 5 characters "],
+            maxlenght: [50 , "category name should be less than 50 characters"],
         },
         slug:{
             type: String,
+            unique: true ,
             lowercase: true,
         },
     },
     {timestamps: true}
 );
-export const category = model("category", categorySchema)
+export const category = model('category', categorySchema)
