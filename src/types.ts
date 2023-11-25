@@ -8,3 +8,11 @@ export type user = {
     isAdmin: Boolean,
     isBanned: Boolean,
 }
+export type category ={
+    _id: string,
+    name: string,
+    // slug: string,
+    createdAt?: NativeDate,
+    updatedAt?: NativeDate
+}
+

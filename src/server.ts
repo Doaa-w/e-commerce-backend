@@ -3,12 +3,13 @@ import express, { Request, Response, NextFunction, Application } from "express";
 import { dev } from "./config";
 import { connectDB } from './config/db';
 
-import productsRouter from './routers/products';
-import usersRouter from './routers/users';
-import ordersRouter from './routers/orders';
+import usersRouter from './routers/users'
+import productsRouter from './routers/products'
+import ordersRouter from './routers/orders'
+import categoryRouter from './routers/categories'
 
-import apiErrorHandler from './middlewares/errorHandler';
-import myLogger from './middlewares/logger';
+import apiErrorHandler from './middlewares/errorHandler'
+import myLogger from './middlewares/logger'
 
 const app: Application = express();
 const port:number = dev.app.port;
@@ -30,6 +31,7 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 app.use('/api/products', productsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/orders', ordersRouter);
+app.use('/api/categories', categoryRouter)
 
 app.use(apiErrorHandler);
 
