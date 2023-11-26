@@ -12,8 +12,6 @@ export type UserType = {
     updatedAt?: NativeDate;
 }
 
-export type UserInputType = Omit<UserType, '_id'>;
-
 export type category ={
     _id: string,
     name: string,

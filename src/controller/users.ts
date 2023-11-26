@@ -1,6 +1,6 @@
 import { Request, Response , NextFunction } from "express";
 
-import { findAllUsers, createUser } from "../services/userService";
+import { findAllUsers, createUser, updateSingleUserById } from "../services/userService";
 
 export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -25,15 +25,20 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
     }
 };
 
-export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+export const updateUserById = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const user = await updateSingleUserById(req);
+        res.status(200).send({
+            message: 'User data is updated',
+            payload: user
+        });
     }
     catch(error) {
         next(error);
     }
-}; 
+};
 
-export const updateUserById = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
     }
     catch(error) {
