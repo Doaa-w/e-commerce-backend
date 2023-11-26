@@ -5,7 +5,7 @@ import { connectDB } from './config/db';
 
 import usersRouter from './routers/users';
 import productsRouter from './routers/products';
-// import ordersRouter from './routers/orders';
+import ordersRouter from './routers/orders';
 import categoryRouter from './routers/categories';
 
 import apiErrorHandler from './middlewares/errorHandler';
@@ -30,7 +30,7 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 
 app.use('/api/products', productsRouter);
 app.use('/api/users', usersRouter);
-// app.use('/api/orders', ordersRouter);
+app.use('/api/orders', ordersRouter);
 app.use('/api/categories', categoryRouter);
 
 app.use(apiErrorHandler);
