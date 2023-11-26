@@ -21,3 +21,11 @@ export type category ={
 }
 
 export type categoryInput= Omit<category,'_id '>;
+
+export type Product = {
+  name: string
+  description: string
+  quantity: number
+}
+
+export type productInput = Omit<Product, 'id'>
