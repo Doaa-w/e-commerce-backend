@@ -29,7 +29,7 @@ export const updateUserById = async (req: Request, res: Response, next: NextFunc
     try {
         const user = await updateSingleUserById(req);
         res.status(200).send({
-            message: 'User data is updated',
+            message: 'User data updated successfully',
             payload: user
         });
     }
