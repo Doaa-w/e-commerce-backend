@@ -1,6 +1,6 @@
 import { Request, Response , NextFunction } from "express";
 
-import { findAllUsers, createUser, updateSingleUserById } from "../services/userService";
+import { findAllUsers, createUser, updateSingleUserById, removeUserById } from "../services/userService";
 
 export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -38,8 +38,10 @@ export const updateUserById = async (req: Request, res: Response, next: NextFunc
     }
 };
 
-export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteUserById = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const user = await removeUserById(req);
+        res.status(204).json();
     }
     catch(error) {
         next(error);
