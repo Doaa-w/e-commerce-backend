@@ -30,7 +30,6 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-// Middleware to automatically generate and set the slug before saving the order
 orderSchema.pre<OrderDocument>('save', function (next) {
   this.slug = slugify(this.name, { lower: true });
   next();
