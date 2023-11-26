@@ -1,5 +1,6 @@
 
 import { Schema ,model } from "mongoose";
+import { categoryI } from "../types";
 
  const categorySchema = new Schema(
     {
@@ -18,4 +19,4 @@ import { Schema ,model } from "mongoose";
     },
     {timestamps: true}
 );
-export const category = model('category', categorySchema)
+export const category = model<categoryI>('category', categorySchema)

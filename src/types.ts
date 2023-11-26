@@ -1,3 +1,5 @@
+import { Document } from "mongoose";
+
 export type UserType = {
     _id: string;
     first_name: string;
@@ -12,16 +14,13 @@ export type UserType = {
     updatedAt?: NativeDate;
 }
 
-export type category ={
-    _id: string,
-    name: string,
-    // slug: string,
-    createdAt?: NativeDate,
-    updatedAt?: NativeDate
+export interface categoryI extends Document {
+  _id: string,
+  name: string,
+  slug: string,
+  createdAt?: Date,
+  updatedAt?: Date
 }
-
-export type categoryInput= Omit<category,'_id '>;
-
 export type Product = {
   name: string
   description: string
