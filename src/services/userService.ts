@@ -42,3 +42,14 @@ export const updateSingleUserById = async (req: Request) => {
     await User.findOneAndUpdate({id: id}, req.body, {new: true});
     return user;
 }
+
+export const removeUserById = async (req: Request) => {
+    const id = req.params.id;
+    const user = await User.findById(id);
+    if(!user) {
+    const error = new ApiError(404, "User is not found");
+    throw error;
+    }
+    await User.findOneAndDelete({id: id});
+    return user;
+}
