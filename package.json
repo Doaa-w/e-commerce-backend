@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "ts-watch": "tsc -w",
-    "start": "nodemon --watch 'src/**/*.ts' --exec ts-node dist/server.js"
+    "start": "nodemon --watch \"src/**/*.ts\" --exec \"ts-node\" src/server.ts"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -16,9 +16,10 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.21",
-    "@types/mongoose": "^5.11.97",
     "@types/node": "^17.0.34",
     "dotenv": "^16.3.1",
+    "http-errors": "^2.0.0",
+    "mongoose": "^8.0.1",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2"

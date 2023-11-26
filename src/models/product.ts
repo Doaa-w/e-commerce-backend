@@ -8,7 +8,7 @@ interface IProduct extends Document {
   slug: string;
 }
 
-const productSchema = new Schema<IProduct>(
+const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -23,22 +23,7 @@ const productSchema = new Schema<IProduct>(
       type: Number,
       default: 1,
     },
-    slug: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-  },
-  {
-    timestamps: true,
   }
-);
+)
 
-productSchema.pre<IProduct>('save', function (next) {
-  this.slug = slugify(this.name, { lower: true });
-  next();
-});
-
-const Product = mongoose.model<IProduct>('Product', productSchema);
-
-export default Product;
+export default mongoose.model('Product', productSchema)
