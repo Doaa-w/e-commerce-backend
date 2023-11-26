@@ -20,10 +20,6 @@ export const userExist = async (email: string) => {
 export const createUser = async (req: Request, next: NextFunction) => {
     const { first_name, last_name, email, password, phone, address } = req.body;
     await userExist(email);
-
-    const fullName = `${first_name} ${last_name}`;
-    const slug = slugify(fullName);
-
     const user = new User ({
         first_name,
         last_name,
