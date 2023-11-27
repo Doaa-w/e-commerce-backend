@@ -1,12 +1,14 @@
 import express from 'express';
 
 import { getAllUsers, register, updateUserById, deleteUserById } from '../controller/users';
+import { userValidation } from '../validation/vaildations';
+import { runValidation } from '../validation/runValidation';
 
 const router = express.Router();
 
 router.get('/', getAllUsers);
-router.post('/', register);
-router.put('/:id', updateUserById);
+router.post('/', userValidation, runValidation, register);
+router.put('/:id',  userValidation, runValidation, updateUserById);
 router.delete('/:id', deleteUserById);
 
 export default router;

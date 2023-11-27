@@ -2,6 +2,7 @@ import {Request,Response , NextFunction } from "express";
 import product from "../models/product";
 
 
+
 export const getAllProducts = async (req: Request , res: Response , next:NextFunction)=>{
     try {
       const products = await product.find()

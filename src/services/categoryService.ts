@@ -2,7 +2,14 @@ import slugify from "slugify"
 import { category } from "../models/category"
 
 
-export const getAllTheCategory = async()=>{
+export const getAllTheCategory = async( search='' )=>{
+    const searchRegExp = new RegExp ('.*' + search + '.*','i')
+    const filter={
+       $or:[
+         {name: {$regex:searchRegExp }}
+       ]   
+    }
+    console.log('your search',search)
     const categories = await category.find() 
     return categories
 }

@@ -7,7 +7,7 @@ import Order from '../models/order'
 import ApiError from '../errors/ApiError'
 import { createSingleProduct, deleteSingleProducts, getAllProducts, getSingleProductsBySlug, updateSingleProduct } from '../controller/products';
 
-import { createProduct, getAllProducts } from '../controller/products';
+import { createProduct } from '../controller/products';
 
 const router = Router()
 router.get('/', getAllProducts)
