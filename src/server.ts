@@ -19,15 +19,6 @@ app.use(myLogger);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
-  try {
-    res.send('Hello World!');
-  }
-  catch(error) {
-    next(error);
-  }
-});
-
 app.use('/api/products', productsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/orders', ordersRouter);
