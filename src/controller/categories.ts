@@ -1,13 +1,12 @@
 import {Request,Response , NextFunction } from "express";
-import slugify from "slugify";
-import { category } from "../models/category";
-import { categoryInput } from "../types";
+
+import { createTheCategory, deleteTheCategory, getAllTheCategory, getTheCategory, updateTheCategory } from "../services/categoryService";
 
 
 
 export const getAllCategories =  async (req: Request , res: Response , next:NextFunction)=>{
     try {
-      const categories = await category.find() 
+      const categories = await getAllTheCategory() 
         res.status(200).json({message: 'all categories are here' , payload: categories})  
         console.log(categories)
     } catch (error) {
@@ -18,8 +17,8 @@ export const getAllCategories =  async (req: Request , res: Response , next:Next
 
 export const getSinglrCategory =  async (req: Request , res: Response , next:NextFunction )=>{
 try {
-    const slug =req.params.slug
-    const singleCategory = await category.findOne({slug: slug})
+    const {slug} =req.params
+    const singleCategory = await getTheCategory(slug)
     if(!singleCategory){
       res.status(404).json({message: "category with this slug does not exists"})
     }
@@ -34,20 +33,13 @@ try {
 
 export const createCtegory =  async (req: Request , res: Response , next:NextFunction)=>{
   try {
-    const { name }: categoryInput = req.body
-    const exsistCategory= await category.exists({name: name})
-    if(exsistCategory){
-        res.json({message: "category already exists"})
-    }
-    const newCategory = new category({
-        name,
-        slug: slugify(name),
-    })
-    await newCategory.save()
+    const { name } = req.body
+    console.log(req.body)
+    const singleCategory= await createTheCategory(name)
     res.status(201).json({
-        message: "added new category",
-        payload: newCategory
-    })
+      message: " category is created" ,
+      payload: singleCategory
+  })
   } catch (error) {
     next(error)
   }  
@@ -55,16 +47,11 @@ export const createCtegory =  async (req: Request , res: Response , next:NextFun
 
 export const deleteCategory =  async (req: Request , res: Response , next:NextFunction)=>{
     try {
-      const id = req.params.id
-      const deletedCategory = await category.findByIdAndDelete(id)  
-      if(!deletedCategory){
-        res.status(404).json({
-          message: "category not found " ,
-          payload: deletedCategory
-        })
-      }
+      const {slug} = req.params
+      const deletedCategory = await deleteTheCategory(slug) 
       res.status(204).json({
-        message: "category is deleted"
+        message: "category is deleted",
+        payload: deletedCategory
       })
 
     } catch (error) {
@@ -74,18 +61,16 @@ export const deleteCategory =  async (req: Request , res: Response , next:NextFu
 
 export const updateCategory =  async (req: Request , res: Response , next:NextFunction)=>{
     try {
-      const id=req.params.id
-      const updateCategory: categoryInput =req.body
-      const updatedCategory =await category.findByIdAndUpdate(id, updateCategory ,{new: true})  
-      if(!updatedCategory){
-        res.status(400).json({
-            message: "catrgory does not exsist "
-        })
+      const {name}= req.body
+      const {slug} =req.params
+      const {updatedCategory}= await updateTheCategory(slug , name)
+     await updatedCategory?.save()
         res.status(200).json({
-            message: "the category is updated"
+            message: "the category is updated",
+            payload:updatedCategory
         })
-    }  
+     
     } catch (error) {
       next(error)  
     }
-}
+  }
