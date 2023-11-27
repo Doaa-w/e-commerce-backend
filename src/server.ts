@@ -8,11 +8,12 @@ import productsRouter from './routers/products';
 import ordersRouter from './routers/orders';
 import categoriesRouter from './routers/categories';
 
-import apiErrorHandler from './middlewares/errorHandler'
-import myLogger from './middlewares/logger'
+import myLogger from './middlewares/logger';
+import { createHttpError } from './util/createHttpError';
+import { apiErrorHandler } from './middlewares/errorHandler';
 
 const app: Application = express();
-const port:number = dev.app.port;
+const port: number = dev.app.port;
 
 app.use(myLogger);
 app.use(express.urlencoded({ extended: false }));
@@ -37,4 +38,9 @@ app.use(apiErrorHandler)
 app.listen(port, async () => {
   console.log('Server running http://localhost:' + port);
   connectDB();
+});
+
+app.use((res, req, next) => {
+  const error = createHttpError(404, 'Router no found')
+  next(error)
 });

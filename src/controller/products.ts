@@ -1,44 +1,33 @@
 import { Request, Response, NextFunction } from 'express'
-import Product from '../models/product'
-import slugify from 'slugify'
+import {
+  creatProduct,
+  deleteProduct,
+  getProducts,
+  getSingleProduct,
+  updateProduct,
+} from '../services/productService'
 
 export const getAllProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    let page = Number(req.query.page) || 1
-    const limit = Number(req.query.limit) || 10
-    const totalCount = await Product.countDocuments()
-    const totalPages = Math.ceil(totalCount / limit)
-    if (page > totalPages) {
-      page = totalPages > 0 ? totalPages : 1
-    }
+    const page = typeof req.query.page === 'string' ? req.query.page : '1'
+    const limit = typeof req.query.limit === 'string' ? req.query.limit : '10'
 
-    const skip = (page - 1) * limit
-    const products = await Product.find().skip(skip).limit(limit)
-
-    if (page > totalCount) {
-    }
+    const result = await getProducts(page, limit)
 
     res.status(200).json({
       message: 'Returns all products',
-      payload: products,
-      page,
-      limit,
-      totalCount,
+      payload: result.products,
+      ...result,
     })
   } catch (error) {
     next(error)
   }
 }
-
 export const getSingleProductsBySlug = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const slug = req.params.slug
-    const product = await Product.findOne({ slug: slug })
-    // send a status code to Error
-    if (!product) {
-      throw new Error('Product not found!')
-    }
-    console.log(product)
+    const product = await getSingleProduct(slug)
+    console.log(slug)
 
     res.status(200).json({
       message: 'Product found',
@@ -51,13 +40,9 @@ export const getSingleProductsBySlug = async (req: Request, res: Response, next:
 export const deleteSingleProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const slug = req.params.slug
-    const deletedProduct = await Product.findOneAndDelete({ slug: slug })
+    const deletedProduct = await deleteProduct(slug)
 
-    if (!deletedProduct) {
-      throw new Error('Product not found!')
-    }
-
-    res.json({
+    res.status(201).json({
       message: 'Product deleted',
       payload: deletedProduct,
     })
@@ -68,14 +53,8 @@ export const deleteSingleProducts = async (req: Request, res: Response, next: Ne
 export const createSingleProduct = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const newProduct = req.body
-    const productExist = await Product.exists({ title: newProduct.title })
-    if (productExist) {
-      return res.status(400).json({ message: 'Product already exists' })
-    }
-    newProduct.slug = slugify(newProduct.title, { lower: true })
-    const product = new Product(newProduct)
-    await product.save()
-    res.json({
+    const product = await creatProduct(newProduct)
+    res.status(201).json({
       message: 'Product created',
       payload: product,
     })
@@ -86,27 +65,11 @@ export const createSingleProduct = async (req: Request, res: Response, next: Nex
 export const updateSingleProduct = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const originalSlug = req.params.slug
-    const { title } = req.body
     const updateProductData = req.body
 
+    const updatedProduct = await updateProduct(originalSlug, updateProductData)
 
-    const productExists = await Product.findOne({ slug: originalSlug })
-    if (!productExists) {
-      return res.status(404).json({ message: 'Product not found!' })
-    }
-
-
-    if (title && title !== productExists.title) {
-      updateProductData.slug = slugify(title, { lower: true })
-    }
-
-    const updatedProduct = await Product.findOneAndUpdate(
-      { slug: originalSlug },
-      updateProductData,
-      { new: true } 
-    )
-
-    res.json({
+    res.status(201).json({
       message: 'Product updated successfully',
       payload: updatedProduct,
     })
