@@ -800,3 +800,11 @@ Method: PUT, Path: /api/categories/nsamesj, Date: ١٢‏/٥‏/١٤٤٥ هـ, T
 Method: GET, Path: /api/categories, Date: ١٢‏/٥‏/١٤٤٥ هـ, Time: ٧:٠٣:٢٢ م
 Method: PUT, Path: /api/categories/nsamesj, Date: ١٢‏/٥‏/١٤٤٥ هـ, Time: ٧:٠٨:٤٣ م
 Method: POST, Path: /api/categories, Date: ١٢‏/٥‏/١٤٤٥ هـ, Time: ٧:٠٩:٠٩ م
+Method: GET, Path: /api/categories, Date: ١٣‏/٥‏/١٤٤٥ هـ, Time: ١٠:٣٤:٣٧ ص
+Method: GET, Path: /api/categoriessearch=zzzz, Date: ١٣‏/٥‏/١٤٤٥ هـ, Time: ١٠:٣٧:٠٣ ص
+Method: GET, Path: /api/categories/search=zzzz, Date: ١٣‏/٥‏/١٤٤٥ هـ, Time: ١٠:٣٧:١٦ ص
+Method: GET, Path: /api/categories, Date: ١٣‏/٥‏/١٤٤٥ هـ, Time: ١٠:٣٧:٣٢ ص
+Method: GET, Path: /api/categories, Date: ١٣‏/٥‏/١٤٤٥ هـ, Time: ١٠:٣٧:٥٤ ص
+Method: GET, Path: /api/categories, Date: ١٣‏/٥‏/١٤٤٥ هـ, Time: ١٠:٣٧:٥٨ ص
+Method: GET, Path: /api/categories, Date: ١٣‏/٥‏/١٤٤٥ هـ, Time: ١٠:٣٩:٢٩ ص
+Method: GET, Path: /api/categories, Date: ١٣‏/٥‏/١٤٤٥ هـ, Time: ١٠:٣٩:٣٣ ص
