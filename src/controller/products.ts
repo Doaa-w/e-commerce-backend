@@ -1,6 +1,8 @@
+import slugify from 'slugify'
 import { Request, Response, NextFunction } from 'express'
 import Product from '../models/product'
-import slugify from 'slugify'
+import { ProductInput, ProductType } from '../types'
+import { createHttpError } from '../util/createHttpError'
 
 export const getAllProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -34,9 +36,9 @@ export const getSingleProductsBySlug = async (req: Request, res: Response, next:
   try {
     const slug = req.params.slug
     const product = await Product.findOne({ slug: slug })
-    // send a status code to Error
     if (!product) {
-      throw new Error('Product not found!')
+      const error = createHttpError(404, 'Product not found!')
+      throw error
     }
     console.log(product)
 
@@ -54,10 +56,10 @@ export const deleteSingleProducts = async (req: Request, res: Response, next: Ne
     const deletedProduct = await Product.findOneAndDelete({ slug: slug })
 
     if (!deletedProduct) {
-      throw new Error('Product not found!')
+      const error = createHttpError(404, 'Product not found!')
+      throw error
     }
-
-    res.json({
+    res.status(204).json({
       message: 'Product deleted',
       payload: deletedProduct,
     })
@@ -69,17 +71,19 @@ export const createSingleProduct = async (req: Request, res: Response, next: Nex
   try {
     const newProduct = req.body
     const productExist = await Product.exists({ title: newProduct.title })
-    if (productExist) {
-      return res.status(400).json({ message: 'Product already exists' })
+    if (!productExist) {
+      newProduct.slug = slugify(newProduct.title, { lower: true })
+      const product = new Product(newProduct)
+      await product.save()
+      res.status(201).json({
+        message: 'Product created',
+        payload: product,
+      })
     }
-    newProduct.slug = slugify(newProduct.title, { lower: true })
-    const product = new Product(newProduct)
-    await product.save()
-    res.json({
-      message: 'Product created',
-      payload: product,
-    })
+    const error = createHttpError(409, 'Product already exists')
+    throw error
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }
@@ -89,12 +93,12 @@ export const updateSingleProduct = async (req: Request, res: Response, next: Nex
     const { title } = req.body
     const updateProductData = req.body
 
-
     const productExists = await Product.findOne({ slug: originalSlug })
-    if (!productExists) {
-      return res.status(404).json({ message: 'Product not found!' })
-    }
 
+    if (!productExists) {
+      const error = createHttpError(404, 'Product not found!')
+      throw error
+    }
 
     if (title && title !== productExists.title) {
       updateProductData.slug = slugify(title, { lower: true })
@@ -103,10 +107,10 @@ export const updateSingleProduct = async (req: Request, res: Response, next: Nex
     const updatedProduct = await Product.findOneAndUpdate(
       { slug: originalSlug },
       updateProductData,
-      { new: true } 
+      { new: true }
     )
 
-    res.json({
+    res.status(201).json({
       message: 'Product updated successfully',
       payload: updatedProduct,
     })

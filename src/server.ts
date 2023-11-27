@@ -10,6 +10,7 @@ import categoryRouter from './routers/categories';
 
 import apiErrorHandler from './middlewares/errorHandler';
 import myLogger from './middlewares/logger';
+import { createHttpError } from "./util/createHttpError";
 
 const app: Application = express();
 const port: number = dev.app.port;
@@ -33,7 +34,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/categories', categoryRouter);
 
-app.use(apiErrorHandler);
+
 
 // mongoose
 //   .connect(URL)
@@ -48,3 +49,11 @@ app.listen(port, async () => {
   console.log('Server running http://localhost:' + port);
   connectDB();
 });
+
+app.use((res, req, next) => {
+  const error = createHttpError(404, 'Router no found')
+  next(error)
+})
+
+
+app.use(apiErrorHandler)

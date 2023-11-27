@@ -22,10 +22,28 @@ export type category ={
 
 export type categoryInput= Omit<category,'_id '>;
 
-export type Product = {
-  name: string
+// export type Product = {
+//   name: string
+//   description: string
+//   quantity: number
+// }
+
+// export type productInput = Omit<Product, 'id'>
+export interface Error {
+  status?: number
+  message?: string
+}
+export type ProductType = {
+  _id: string
+  title: string
+  slug: string
   description: string
+  price: number
   quantity: number
+  sold: number
+  shipping: number
+  createdAt?: NativeDate
+  updatedAt?: NativeDate
 }
 
-export type productInput = Omit<Product, 'id'>
+export type ProductInput = Omit<ProductType, '_id'>
