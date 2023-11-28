@@ -35,7 +35,9 @@ export const createCtegory =  async (req: Request , res: Response , next:NextFun
   try {
     const { name } = req.body
     console.log(req.body)
-    const singleCategory= await createTheCategory(name)
+    const singleCategory = await createTheCategory(name)
+    console.log();
+    
     res.status(201).json({
       message: " category is created" ,
       payload: singleCategory

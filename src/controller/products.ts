@@ -16,7 +16,7 @@ export const getAllProducts = async (req: Request, res: Response, next: NextFunc
 
     res.status(200).json({
       message: 'Returns all products',
-      payload: result.products,
+      // payload: result.products,
       ...result,
     })
   } catch (error) {
