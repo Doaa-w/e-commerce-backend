@@ -28,7 +28,7 @@ try {
 }
 }
 
-export const createCtegory =  async (req: Request , res: Response , next:NextFunction)=>{
+export const createCategory =  async (req: Request , res: Response , next:NextFunction)=>{
   try {
     const newCategory = req.body
     console.log(req.body)
