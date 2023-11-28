@@ -1071,3 +1071,16 @@ Method: POST, Path: /api/users/register, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time
 Method: POST, Path: /api/users/activate-user, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١٢:٠٦:٥١ م
 Method: POST, Path: /api/users/activate-account, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١٢:٠٦:٥٧ م
 Method: GET, Path: /api/users/, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١٢:٠٧:٢٩ م
+Method: GET, Path: /api/products, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٤٤:٠٠ م
+Method: GET, Path: /api/products, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٤٤:٣٥ م
+Method: GET, Path: /api/products, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٤٦:٣١ م
+Method: GET, Path: /api/products, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٤٦:٣٨ م
+Method: GET, Path: /api/products, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٤٧:٤٦ م
+Method: GET, Path: /api/products, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٤٩:٠٥ م
+Method: GET, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٤٩:٣٢ م
+Method: GET, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٤٩:٤٦ م
+Method: GET, Path: /api/products, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٥٠:٥٤ م
+Method: GET, Path: /api/products, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٥١:٣٦ م
+Method: PUT, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٥٢:٣١ م
+Method: POST, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٥٣:٠٠ م
+Method: POST, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٥٣:٤٣ م

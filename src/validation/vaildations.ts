@@ -8,7 +8,7 @@ check('name')
 ]
 
 export const createProductValidation: ValidationChain[] =[
-check('name')
+check('title')
 .trim()
 .notEmpty()
 .withMessage('provid name for the product') ,
@@ -30,8 +30,8 @@ check('category')
 .withMessage('ID is not correct'),
 ]
 
-const updateProductValidation : ValidationChain[]=[
-    check('name')
+export const updateProductValidation : ValidationChain[]=[
+    check('title')
     .trim()
     .notEmpty()
     .withMessage('provid name for the product') ,
