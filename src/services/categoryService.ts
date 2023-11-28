@@ -40,7 +40,7 @@ export const createTheCategory = async(categoryInput: CategoryInput)=>{
 }
 
 export const deleteTheCategory= async (slug:string)=>{
-    const deletedCategory = await category.deleteOne({slug: slug}) 
+    const deletedCategory = await category.findOneAndDelete({slug: slug}) 
     if (!deletedCategory) {
         throw new ApiError(404, 'Product not found!')
       }
@@ -48,7 +48,7 @@ export const deleteTheCategory= async (slug:string)=>{
 }
 
 export const updateTheCategory= async(slug: any , updateCategoryData: categoryI)=>{
-    const categoryExists = await category.findOne({ slug: slug })
+    const categoryExists = await category.findOneAndUpdate({ slug: slug })
   if (!categoryExists) {
     throw new ApiError(404, 'category not found!')
   }
