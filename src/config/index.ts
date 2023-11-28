@@ -2,9 +2,12 @@ import "dotenv/config";
 
 export const dev = {
     app: {
-        port: Number(process.env.PORT) || 3003
+        port: Number(process.env.PORT) || 3003,
+        jwtUserActivationKey: process.env.JWT_USER_ACTIVATION_KEY || 'default_secret_key',
+        smtpUsername: process.env.SMTP_USERNAME || 'default_smtp_username',
+        smtpPassword: process.env.SMTP_PASSWORD || 'default__smtp_password'
     },
     db: {
-        url: process.env.MONGODB_URL ||  'mongodb://localhost:27017/ecommerce-db'
+        url: process.env.MONGODB_URL || 'mongodb://localhost:27017/ecommerce-db'
     }
 };

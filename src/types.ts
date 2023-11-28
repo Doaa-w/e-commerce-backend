@@ -1,17 +1,23 @@
 import { Document } from "mongoose";
 
 export type UserType = {
-    _id: string;
-    first_name: string;
-    last_name: string;
-    email: string;
-    password: string;
-    phone: string;
-    address?: string;
-    isAdmin?: boolean;
-    isBanned?: boolean;
-    createdAt?: NativeDate;
-    updatedAt?: NativeDate;
+  _id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  phone: string;
+  address?: string;
+  isAdmin?: boolean;
+  isBanned?: boolean;
+  createdAt?: NativeDate;
+  updatedAt?: NativeDate;
+}
+
+export type EmailDataType = {
+  email: string;
+  subject: string;
+  html: string;
 }
 
 export interface categoryI extends Document {

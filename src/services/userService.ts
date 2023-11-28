@@ -1,5 +1,4 @@
-import { NextFunction, Request } from "express";
-import slugify from "slugify";
+import { Request } from "express";
 
 import ApiError from "../errors/ApiError";
 import User from "../models/user";
@@ -7,49 +6,40 @@ import User from "../models/user";
 export const findAllUsers = async () => {
     const users = await User.find();
     return users;
-}
+};
+
+export const findSingleUser = async (id: string) => {
+    const user = await User.findById({_id: id});
+    if(!user) {
+        const error = new ApiError(404, "User is not found");
+        throw error;
+    }
+    return user;
+};
 
 export const userExist = async (email: string) => {
     const userExist = await User.exists({email: email});
     if (userExist) {
-        const error = new ApiError(409, "User account already exists")
+        const error = new ApiError(409, "User account already exists");
         throw error;       
     }
-}
-
-export const createUser = async (req: Request, next: NextFunction) => {
-    const { first_name, last_name, email, password, phone, address } = req.body;
-    await userExist(email);
-    const user = new User ({
-        first_name,
-        last_name,
-        email,
-        password,
-        phone,
-        address
-    });
-    await user.save();
-    return user;
-}
+};
 
 export const updateSingleUserById = async (req: Request) => {
     const id = req.params.id;
-    const user = await User.findById(id);
+    const user = await User.findOneAndUpdate({_id: id}, req.body, {new: true});
     if(!user) {
     const error = new ApiError(404, "User is not found");
     throw error;
     }
-    await User.findOneAndUpdate({id: id}, req.body, {new: true});
     return user;
-}
+};
 
-export const removeUserById = async (req: Request) => {
-    const id = req.params.id;
-    const user = await User.findById(id);
+export const removeUserById = async (id: string) => {
+    const user = await User.findOneAndDelete({_id: id});
     if(!user) {
     const error = new ApiError(404, "User is not found");
     throw error;
     }
-    await User.findOneAndDelete({id: id});
     return user;
-}
+};
