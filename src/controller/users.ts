@@ -6,9 +6,8 @@ import { dev } from "../config";
 import ApiError from "../errors/ApiError";
 
 import User from "../models/user";
-import { findAllUsers, updateSingleUserById, removeUserById, userExist, findSingleUser } from "../services/userService";
+import { findAllUsers, updateSingleUserById, removeUserById, userExist, findSingleUser, banUserById, unbanUserById } from "../services/userService";
 import { handleSendEmail } from "../helper/sendEmail";
-
 
 export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -119,6 +118,32 @@ export const deleteUserById = async (req: Request, res: Response, next: NextFunc
         const id = req.params.id;
         await removeUserById(id);
         res.status(204).json();
+    }
+    catch(error) {
+        next(error);
+    }
+};
+
+export const banUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const id = req.params.id;
+        await banUserById(id);
+        res.status(200).send({
+            message: 'The user has been successfully banned',
+        });
+    }
+    catch(error) {
+        next(error);
+    }
+};
+
+export const unbanUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const id = req.params.id;
+        await unbanUserById(id);
+        res.status(200).send({
+            message: 'The user has been successfully unbanned',
+        });
     }
     catch(error) {
         next(error);

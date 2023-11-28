@@ -1,5 +1,3 @@
-
-
 export type UserType = {
   _id: string;
   first_name: string;
@@ -10,8 +8,8 @@ export type UserType = {
   address?: string;
   isAdmin?: boolean;
   isBanned?: boolean;
-  createdAt?: NativeDate;
-  updatedAt?: NativeDate;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export type EmailDataType = {
