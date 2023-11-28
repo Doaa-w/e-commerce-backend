@@ -11,6 +11,7 @@ export const getAllProducts = async (req: Request, res: Response, next: NextFunc
   try {
     const page = typeof req.query.page === 'string' ? req.query.page : '1'
     const limit = typeof req.query.limit === 'string' ? req.query.limit : '10'
+    const search = req.query.search as string ||""
 
     const result = await getProducts(page, limit)
 
@@ -42,7 +43,7 @@ export const deleteSingleProducts = async (req: Request, res: Response, next: Ne
     const slug = req.params.slug
     const deletedProduct = await deleteProduct(slug)
 
-    res.status(201).json({
+    res.status(204).json({
       message: 'Product deleted',
       payload: deletedProduct,
     })
