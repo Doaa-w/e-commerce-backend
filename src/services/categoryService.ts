@@ -1,5 +1,7 @@
 import slugify from "slugify"
 import { category } from "../models/category"
+import ApiError from "../errors/ApiError"
+import { CategoryInput, categoryI } from "../types"
 
 
 export const getAllTheCategory = async( search='' )=>{
@@ -11,36 +13,51 @@ export const getAllTheCategory = async( search='' )=>{
     }
     console.log('your search',search)
     const categories = await category.find() 
+    if (!categories) {
+        throw new ApiError(404, 'categories not found!')
+      }
     return categories
 }
 
 export const getTheCategory = async(slug:string)=>{
     const singleCategory = await category.findOne({slug: slug})
+    if (!singleCategory) {
+        throw new ApiError(404, 'categories not found!')
+      }
     return singleCategory
 }
 
-export const createTheCategory = async(name: string)=>{
-    const exsistCategory= await category.exists({name: name})
+export const createTheCategory = async(categoryInput: CategoryInput)=>{
+    const exsistCategory= await category.exists({name: categoryInput.name})
     if(exsistCategory){
-        throw Error ( "category exsist")
+        throw new ApiError(404, "category exsist")
     }
-    const newCategory = new category({
-        name: name,
-        slug: slugify(name),
-    })
-     newCategory.save() 
+ 
+    categoryInput.slug = slugify(categoryInput.name, { lower: true })
+    const newCategory = new category(categoryInput)
+     await newCategory.save() 
     return newCategory
 }
 
 export const deleteTheCategory= async (slug:string)=>{
     const deletedCategory = await category.deleteOne({slug: slug}) 
+    if (!deletedCategory) {
+        throw new ApiError(404, 'Product not found!')
+      }
     return deletedCategory
 }
 
-export const updateTheCategory= async(slug: string , name: string)=>{
+export const updateTheCategory= async(slug: any , updateCategoryData: categoryI)=>{
+    const categoryExists = await category.findOne({ slug: slug })
+  if (!categoryExists) {
+    throw new ApiError(404, 'category not found!')
+  }
+if (updateCategoryData.name && updateCategoryData.name !== categoryExists.name){
+    updateCategoryData.slug = slugify(updateCategoryData.name, {lower: true})
+}
     const updatedCategory =await category.findOneAndUpdate(
         {slug: slug},
-        {name: name, slug: name? slugify(name): slug},
+        updateCategoryData,
         {new: true})  
-        return {updatedCategory}
+        return updateCategoryData
 }

@@ -4,16 +4,22 @@ import { ProductInput, ProductType } from '../types'
 import { createHttpError } from '../util/createHttpError'
 import ApiError from '../errors/ApiError'
 // import { createHttpError } from '../util/createHttpError'
-export const getProducts = async (pageParam: string, limitParam: string) => {
+export const getProducts = async (pageParam: string, limitParam: string , search='') => {
   let page = Number(pageParam) || 1
   const limit = Number(limitParam) || 10
   const totalCount = await Product.countDocuments()
   const totalPages = Math.ceil(totalCount / limit)
-
+  const searchRegExp = new RegExp ('.*' + search + '.*','i')
+   const filter={
+     $or:[
+       {title: {$regex:searchRegExp }}
+        ]   
+      }
+      console.log('you' ,search)
   if (page > totalPages) {
     page = totalPages > 0 ? totalPages : 1
   }
-
+  
   const skip = (page - 1) * limit
   const products = await Product.find().skip(skip).limit(limit)
 

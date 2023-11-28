@@ -42,7 +42,7 @@ export const deleteSingleProducts = async (req: Request, res: Response, next: Ne
     const slug = req.params.slug
     const deletedProduct = await deleteProduct(slug)
 
-    res.status(201).json({
+    res.status(204).json({
       message: 'Product deleted',
       payload: deletedProduct,
     })

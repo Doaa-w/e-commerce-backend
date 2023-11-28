@@ -19,9 +19,6 @@ export const getSinglrCategory =  async (req: Request , res: Response , next:Nex
 try {
     const {slug} =req.params
     const singleCategory = await getTheCategory(slug)
-    if(!singleCategory){
-      res.status(404).json({message: "category with this slug does not exists"})
-    }
     res.status(200).json({
         message: "single category is returned" ,
         payload: singleCategory
@@ -33,9 +30,9 @@ try {
 
 export const createCtegory =  async (req: Request , res: Response , next:NextFunction)=>{
   try {
-    const { name } = req.body
+    const newCategory = req.body
     console.log(req.body)
-    const singleCategory= await createTheCategory(name)
+    const singleCategory= await createTheCategory(newCategory)
     res.status(201).json({
       message: " category is created" ,
       payload: singleCategory
@@ -47,7 +44,7 @@ export const createCtegory =  async (req: Request , res: Response , next:NextFun
 
 export const deleteCategory =  async (req: Request , res: Response , next:NextFunction)=>{
     try {
-      const {slug} = req.params
+      const slug = req.params.slug
       const deletedCategory = await deleteTheCategory(slug) 
       res.status(204).json({
         message: "category is deleted",
@@ -61,13 +58,12 @@ export const deleteCategory =  async (req: Request , res: Response , next:NextFu
 
 export const updateCategory =  async (req: Request , res: Response , next:NextFunction)=>{
     try {
-      const {name}= req.body
-      const {slug} =req.params
-      const {updatedCategory}= await updateTheCategory(slug , name)
-     await updatedCategory?.save()
+      const slug =req.params.slug
+      const updateCategoryData= req.body
+      const updatedCategory= await updateTheCategory(slug , updateCategoryData)
         res.status(200).json({
             message: "the category is updated",
-            payload:updatedCategory
+            payload: updatedCategory
         })
      
     } catch (error) {

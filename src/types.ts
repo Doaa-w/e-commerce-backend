@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+
 
 export type UserType = {
   _id: string;
@@ -20,7 +20,7 @@ export type EmailDataType = {
   html: string;
 }
 
-export interface categoryI extends Document {
+export type categoryI ={
   _id: string,
   name: string,
   slug: string,
@@ -28,13 +28,8 @@ export interface categoryI extends Document {
   updatedAt?: Date
 }
 
-// export type Product = {
-//   name: string
-//   description: string
-//   quantity: number
-// }
+export type CategoryInput = Omit<categoryI, '_id'>
 
-// export type productInput = Omit<Product, 'id'>
 export interface Error {
   status?: number
   message?: string
