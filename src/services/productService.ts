@@ -15,7 +15,7 @@ export const getProducts = async (pageParam: string, limitParam: string) => {
   }
 
   const skip = (page - 1) * limit
-  const payload = await Product.find().skip(skip).limit(limit)
+  const payload = await Product.find().populate('category').skip(skip).limit(limit)
 
   return {
     payload,
