@@ -8,6 +8,6 @@ export const dev = {
         smtpPassword: process.env.SMTP_PASSWORD || 'default__smtp_password'
     },
     db: {
-        url: process.env.MONGODB_URL || 'mongodb://localhost:27017/ecommerce-db'
+        url: process.env.MONGODB_URL ||  'mongodb://localhost:27017/ecommerce-db'
     }
 };

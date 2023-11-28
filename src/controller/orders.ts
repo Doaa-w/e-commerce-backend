@@ -1,8 +1,7 @@
-import {Request,Response , NextFunction } from "express";
-import order from "../models/order";
+import { Request, Response, NextFunction } from "express"
+import order from '../models/order'
 
-
- // export const createOrder = async (req: Request , res: Response , next:NextFunction)=>{ 
+// export const createOrder = async (req: Request , res: Response , next:NextFunction)=>{
 // try {
 //     const { name, products } = req.body
 
@@ -27,80 +26,80 @@ import order from "../models/order";
 //  }
 export const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { name, products, slug } = req.body;
+    const { name, products, slug } = req.body
 
     const newOrder = new order({
       name,
       products,
       slug,
-    });
+    })
 
-    const savedOrder = await newOrder.save();
+    const savedOrder = await newOrder.save()
 
-    res.status(201).json(savedOrder);
+    res.status(201).json(savedOrder)
   } catch (error) {
-    next(error);
+    next(error)
   }
-};
+}
 
 export const getAllOrders = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const orders = await order.find().populate('products');
-    res.status(200).json(orders);
+    const orders = await order.find().populate('products')
+    res.status(200).json(orders)
   } catch (error) {
-    next(error);
+    next(error)
   }
-};
+}
 
 export const getOrderBySlug = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const orderSlug = req.params.slug;
+    const orderSlug = req.params.slug
 
-    const orders = await order.findOne({ slug: orderSlug }).populate('products');
+    const orders = await order.findOne({ slug: orderSlug }).populate('products')
 
     if (!orders) {
-      return res.status(404).json({ message: 'Order not found' });
+      return res.status(404).json({ message: 'Order not found' })
     }
 
-    res.status(200).json(orders);
+    res.status(200).json(orders)
   } catch (error) {
-    next(error);
+    next(error)
   }
-};
+}
 
 export const updateOrderBySlug = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const orderSlug = req.params.slug;
-    const { name, products } = req.body;
+    const orderSlug = req.params.slug
+    const { name, products } = req.body
 
     const updatedOrder = await order.findOneAndUpdate(
       { slug: orderSlug },
       { name, products },
       { new: true }
-    );
+    )
 
     if (!updatedOrder) {
-      return res.status(404).json({ message: 'Order not found' });
+      return res.status(404).json({ message: 'Order not found' })
     }
 
-    res.status(200).json(updatedOrder);
+    res.status(200).json(updatedOrder)
   } catch (error) {
-    next(error);
+    next(error)
   }
-};
+}
 
 export const deleteOrderBySlug = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const orderSlug = req.params.slug;
+    const orderSlug = req.params.slug
 
-    const deletedOrder = await order.findOneAndDelete({ slug: orderSlug });
+    const deletedOrder = await order.findOneAndDelete({ slug: orderSlug })
 
     if (!deletedOrder) {
-      return res.status(404).json({ message: 'Order not found' });
+      return res.status(404).json({ message: 'Order not found' })
     }
 
-    res.status(204).send();
+    res.status(204).send()
   } catch (error) {
-    next(error);
+    next(error)
   }
-};
+}
