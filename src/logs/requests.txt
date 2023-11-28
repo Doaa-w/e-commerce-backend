@@ -888,3 +888,6 @@ Method: GET, Path: /api/products/o-gd, Date: 11/27/2023, Time: 5:48:24 PM
 Method: GET, Path: /api/products/o-gd, Date: 11/27/2023, Time: 5:48:25 PM
 Method: GET, Path: /api/products/o-gd, Date: 11/27/2023, Time: 5:48:54 PM
 Method: POST, Path: /api/products, Date: 11/27/2023, Time: 5:49:01 PM
+Method: GET, Path: /api/products, Date: 11/28/2023, Time: 11:27:38 AM
+Method: GET, Path: /api/products, Date: 11/28/2023, Time: 11:28:37 AM
+Method: GET, Path: /api/products, Date: 11/28/2023, Time: 11:28:55 AM
