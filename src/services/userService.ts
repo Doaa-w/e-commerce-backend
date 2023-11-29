@@ -4,12 +4,25 @@ import ApiError from "../errors/ApiError";
 import User from "../models/user";
 
 export const findAllUsers = async () => {
-    const users = await User.find();
+    const filter = {
+        isAdmin: {$ne: true} // $ne means not equal
+    };
+    const options = {
+        password: 0,
+        updatedAt: 0,
+        __v: 0
+    }
+    const users = await User.find(filter, options);
     return users;
 };
 
 export const findSingleUser = async (id: string) => {
-    const user = await User.findById({_id: id});
+    const options = {
+        password: 0,
+        updatedAt: 0,
+        __v: 0
+    }
+    const user = await User.findById({_id: id}, options);
     if(!user) {
         const error = new ApiError(404, "User is not found");
         throw error;
@@ -40,6 +53,16 @@ export const removeUserById = async (id: string) => {
     if(!user) {
     const error = new ApiError(404, "User is not found");
     throw error;
+    }
+};
+
+export const banUserById = async (req: Request) => {
+    const id = req.params.id;
+    const isBanned = req.body.isBanned;
+    const user = await User.findOneAndUpdate({_id: id}, {isBanned: isBanned}, {new: true});
+    if(!user) {
+        const error = new ApiError(404, "User is not found");
+        throw error;
     }
     return user;
 };

@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getAllUsers, updateUserById, deleteUserById, register, activateUserAccount, getUserById } from '../controller/users';
+import { getAllUsers, updateUserById, deleteUserById, register, activateUserAccount, getUserById, banUser } from '../controller/users';
 
 const router = express.Router();
 
@@ -10,5 +10,6 @@ router.post('/activate-account', activateUserAccount);
 router.get('/:id', getUserById);
 router.put('/:id', updateUserById);
 router.delete('/:id', deleteUserById);
+router.put('/ban/:id', banUser);
 
 export default router;
