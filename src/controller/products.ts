@@ -1,17 +1,22 @@
 import { Request, Response, NextFunction } from 'express'
 import {
-  creatProduct,
+  createProduct,
   deleteProduct,
   getProducts,
   getSingleProduct,
   updateProduct,
 } from '../services/productService'
+import { IProduct } from '../types'
+import Product from '../models/product'
+import slugify from 'slugify'
+import ApiError from '../errors/ApiError'
+import { createHttpError } from '../util/createHttpError'
 
 export const getAllProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const page = typeof req.query.page === 'string' ? req.query.page : '1'
     const limit = typeof req.query.limit === 'string' ? req.query.limit : '10'
-    const search = req.query.search as string ||""
+    const search = (req.query.search as string) || ''
 
     const result = await getProducts(page, limit)
 
@@ -53,8 +58,19 @@ export const deleteSingleProducts = async (req: Request, res: Response, next: Ne
 }
 export const createSingleProduct = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const newProduct = req.body
-    const product = await creatProduct(newProduct)
+    const productInput = {
+      title: req.body.title,
+      slug: slugify(req.body.title),
+      price: req.body.price,
+      description: req.body.description,
+      category: req.body.category,
+      quantity: req.body.quantity,
+      sold: req.body.sold,
+      shipping: req.body.shipping,
+      image: req.file?.path || 'default-image-path',
+    }
+
+    const product = await createProduct(productInput)
     res.status(201).json({
       message: 'Product created',
       payload: product,

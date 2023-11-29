@@ -1,7 +1,6 @@
 import slugify from 'slugify'
 import Product from '../models/product'
-import { ProductInput, ProductType } from '../types'
-import { createHttpError } from '../util/createHttpError'
+import { IProduct, ProductInput, ProductType } from '../types'
 import ApiError from '../errors/ApiError'
 // import { createHttpError } from '../util/createHttpError'
 export const getProducts = async (pageParam: string, limitParam: string , search='') => {
@@ -30,7 +29,7 @@ export const getProducts = async (pageParam: string, limitParam: string , search
     totalCount,
   }
 }
-export const getSingleProduct = async (slug: any) => {
+export const getSingleProduct = async (slug: any): Promise<IProduct> => {
   const product = await Product.findOne({ slug: slug })
   if (!product) {
     throw new ApiError(404, 'Product not found!')
@@ -44,18 +43,29 @@ export const deleteProduct = async (slug: any) => {
   }
   return deletedProduct
 }
-export const creatProduct = async (productInput: ProductInput) => {
-  const productExist = await Product.exists({ title: productInput.title })
+export const createProduct = async (productInput: ProductInput): Promise<IProduct> => {
+  const { title, price, description, category, quantity, sold, shipping, image } = productInput
+
+  const productExist = await Product.exists({ title: title })
   if (productExist) {
     throw new ApiError(404, 'Product already exists')
   }
 
-  productInput.slug = slugify(productInput.title, { lower: true })
-  const product = new Product(productInput)
-  await product.save()
+  const newProduct = new Product({
+    title: title,
+    slug: slugify(title),
+    price: price,
+    image: image,
+    description: description,
+    quantity: quantity,
+    category: category,
+    sold: sold,
+    shipping: shipping,
+  })
 
-  return product
+  return newProduct.save()
 }
+
 export const updateProduct = async (originalSlug: any, updateProductData: ProductType) => {
   const productExists = await Product.findOne({ slug: originalSlug })
   if (!productExists) {

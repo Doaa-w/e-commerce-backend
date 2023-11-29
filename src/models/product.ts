@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
+import { IProduct } from '../types'
 
-const productSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema<IProduct>(
   {
     slug: {
       type: String,
@@ -14,6 +15,10 @@ const productSchema = new mongoose.Schema(
       trim: true,
       minlength: [3, 'Product title must be at least 3 characters long'],
       maxlength: [50, 'Product title must be at most 50 characters long'],
+    },
+    image: {
+      type: String,
+      default: 'publice/images/products/default.png',
     },
     description: {
       type: String,
@@ -49,13 +54,15 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    category: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'category',
-      require: true,
-    },
+    category: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category',
+        require: true,
+      },
+    ],
   },
   { timestamps: true }
 )
 
-export default mongoose.model('Product', productSchema)
+export default mongoose.model<IProduct>('Product', productSchema)
