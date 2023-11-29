@@ -16,6 +16,10 @@ const productSchema = new mongoose.Schema<IProduct>(
       minlength: [3, 'Product title must be at least 3 characters long'],
       maxlength: [50, 'Product title must be at most 50 characters long'],
     },
+    image: {
+      type: String,
+      default: 'publice/images/products/default.png',
+    },
     description: {
       type: String,
       required: [true, 'Product description is required'],
@@ -50,11 +54,13 @@ const productSchema = new mongoose.Schema<IProduct>(
       type: Number,
       default: 0,
     },
-    category: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'category',
-      require: true,
-    }],
+    category: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category',
+        require: true,
+      },
+    ],
   },
   { timestamps: true }
 )

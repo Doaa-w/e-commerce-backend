@@ -16,15 +16,16 @@ const app: Application = express();
 const port: number = dev.app.port;
 
 app.use(myLogger);
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+
 
 app.use('/api/products', productsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/categories', categoriesRouter);
 
-app.use(apiErrorHandler)
+
 
 app.listen(port, async () => {
   console.log('Server running http://localhost:' + port);
@@ -35,3 +36,4 @@ app.use((res, req, next) => {
   const error = createHttpError(404, 'Router no found')
   next(error)
 });
+app.use(apiErrorHandler)

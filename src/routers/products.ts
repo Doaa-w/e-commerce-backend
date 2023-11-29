@@ -5,13 +5,14 @@ import ApiError from '../errors/ApiError'
 import { createSingleProduct, deleteSingleProducts, getAllProducts, getSingleProductsBySlug, updateSingleProduct } from '../controller/products';
 import { createProductValidation, updateProductValidation } from '../validation/vaildations';
 import { runValidation } from '../validation/runValidation';
+import { upload } from '../middlewares/uploadFile';
 
 
 const router = Router()
 router.get(`/`, getAllProducts)
 router.get('/:slug', getSingleProductsBySlug)
 // router.post(`/`, createProductValidation,runValidation, createSingleProduct)
-router.post(`/`, createSingleProduct)
+router.post(`/`,upload.single('image'),createSingleProduct)
 // router.put(`/:slug`,updateProductValidation,runValidation, updateSingleProduct)
 router.put(`/:slug`, updateSingleProduct)
 

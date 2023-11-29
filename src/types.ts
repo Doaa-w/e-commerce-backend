@@ -41,6 +41,8 @@ export type ProductType = {
   quantity: number
   sold: number
   shipping: number
+  category: ICategory['_id']
+  image: string
   createdAt?: NativeDate
   updatedAt?: NativeDate
 }
@@ -52,9 +54,11 @@ export interface ICategory extends Document {
   slug: string
 }
 export interface IProduct extends Document {
+  save: any;
   title: string
   slug: string
   price: number
+  image: string
   quantity: number
   sold: number
   shipping: number
