@@ -1153,3 +1153,4 @@ Method: PUT, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:
 Method: POST, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٥٣:٠٠ م
 Method: POST, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٥٣:٤٣ م
 >>>>>>> 4bba35283171606b55a1df39f36e4b6467e018aa
+Method: GET, Path: /api/products, Date: 11/29/2023, Time: 6:36:58 AM
