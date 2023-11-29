@@ -1153,3 +1153,20 @@ Method: PUT, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:
 Method: POST, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٥٣:٠٠ م
 Method: POST, Path: /api/categories, Date: ١٤‏/٥‏/١٤٤٥ هـ, Time: ١:٥٣:٤٣ م
 >>>>>>> 4bba35283171606b55a1df39f36e4b6467e018aa
+Method: GET, Path: /api/products, Date: 11/29/2023, Time: 8:23:56 AM
+Method: POST, Path: /api/categories, Date: 11/29/2023, Time: 8:31:17 AM
+Method: POST, Path: /api/categories, Date: 11/29/2023, Time: 8:32:18 AM
+Method: POST, Path: /api/categories, Date: 11/29/2023, Time: 8:32:40 AM
+Method: GET, Path: /api/categories, Date: 11/29/2023, Time: 8:34:15 AM
+Method: GET, Path: /api/categories, Date: 11/29/2023, Time: 8:34:22 AM
+Method: GET, Path: /api/categories/6565e28340cd588c948d5848, Date: 11/29/2023, Time: 8:34:40 AM
+Method: POST, Path: /api/categories, Date: 11/29/2023, Time: 8:36:42 AM
+Method: POST, Path: /api/categories, Date: 11/29/2023, Time: 8:37:14 AM
+Method: POST, Path: /api/products, Date: 11/29/2023, Time: 8:37:36 AM
+Method: POST, Path: /api/products, Date: 11/29/2023, Time: 8:37:40 AM
+Method: POST, Path: /api/products, Date: 11/29/2023, Time: 8:38:14 AM
+Method: POST, Path: /api/products, Date: 11/29/2023, Time: 8:38:18 AM
+Method: GET, Path: /api/products, Date: 11/29/2023, Time: 8:38:26 AM
+Method: POST, Path: /api/categories, Date: 11/29/2023, Time: 8:38:41 AM
+Method: POST, Path: /api/categories, Date: 11/29/2023, Time: 8:40:59 AM
+Method: POST, Path: /api/categories, Date: 11/29/2023, Time: 8:41:03 AM

@@ -46,3 +46,20 @@ export type ProductType = {
 }
 
 export type ProductInput = Omit<ProductType, '_id'>
+export interface ICategory extends Document {
+  _id: string
+  title: string
+  slug: string
+}
+export interface IProduct extends Document {
+  title: string
+  slug: string
+  price: number
+  quantity: number
+  sold: number
+  shipping: number
+  category: ICategory['_id']
+  description: string
+  createAt?: string
+  updatedAt?: string
+}

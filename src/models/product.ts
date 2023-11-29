@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
+import { IProduct } from '../types'
 
-const productSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema<IProduct>(
   {
     slug: {
       type: String,
@@ -49,13 +50,13 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    category: {
+    category: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'category',
       require: true,
-    },
+    }],
   },
   { timestamps: true }
 )
 
-export default mongoose.model('Product', productSchema)
+export default mongoose.model<IProduct>('Product', productSchema)

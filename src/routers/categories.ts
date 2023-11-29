@@ -10,10 +10,12 @@ router.get('/', getAllCategories)
 
 router.get('/:slug' , getSinglrCategory)
 
-router.post('/',categoryValidations, runValidation, createCategory )
-
+// router.post('/',categoryValidations, runValidation, createCategory )
+router.post('/',  createCategory)
 router.delete('/:slug' , deleteCategory)
 
-router.put('/:slug',categoryValidations, runValidation, updateCategory)
+// router.put('/:slug', categoryValidations, runValidation, updateCategory)
+
+router.put('/:slug', updateCategory)
 
 export default router

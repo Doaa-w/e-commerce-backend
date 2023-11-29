@@ -1,6 +1,6 @@
 import slugify from 'slugify'
 import Product from '../models/product'
-import { ProductInput, ProductType } from '../types'
+import { IProduct, ProductInput, ProductType } from '../types'
 import { createHttpError } from '../util/createHttpError'
 import ApiError from '../errors/ApiError'
 // import { createHttpError } from '../util/createHttpError'
@@ -30,7 +30,7 @@ export const getProducts = async (pageParam: string, limitParam: string , search
     totalCount,
   }
 }
-export const getSingleProduct = async (slug: any) => {
+export const getSingleProduct = async (slug: any): Promise<IProduct> => {
   const product = await Product.findOne({ slug: slug })
   if (!product) {
     throw new ApiError(404, 'Product not found!')
