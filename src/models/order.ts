@@ -1,12 +1,7 @@
-import mongoose, { Document } from 'mongoose';
+import mongoose from 'mongoose';
 import slugify from 'slugify';
 
-export type OrderDocument = Document & {
-  name: string;
-  products: mongoose.Schema.Types.ObjectId[];
-  slug: string;
-  user: string; // Reference to User model using slug
-};
+import { OrderDocument } from '../types';
 
 const orderSchema = new mongoose.Schema({
   name: {

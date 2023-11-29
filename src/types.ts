@@ -6,11 +6,19 @@ export type UserType = {
   password: string;
   phone: string;
   address?: string;
+  order?: OrderDocument[];
   isAdmin?: boolean;
   isBanned?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export type OrderDocument = Document & {
+  name: string;
+  products: ProductType[];
+  slug: string;
+  user: string; // Reference to User model using slug
+};
 
 export type EmailDataType = {
   email: string;
