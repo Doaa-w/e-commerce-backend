@@ -1,17 +1,13 @@
-import express from 'express'
-const router = express.Router()
+import { Router } from 'express';
 
-import { createOrder, getAllOrders, deleteOrderBySlug, updateOrderBySlug, getOrderBySlug } from '../controller/orders'
+import { createOrder, getAllOrders, deleteOrderBySlug, updateOrderBySlug, getOrderBySlug } from '../controller/orders';
 
-router.get('/',getAllOrders)
+const router = Router();
 
-router.post('/', createOrder)
+router.get('/', getAllOrders);
+router.get('/:slug', getOrderBySlug);
+router.post('/', createOrder);
+router.delete('/:slug', deleteOrderBySlug);
+router.post('/:slug', updateOrderBySlug);
 
-router.delete('/:slug', deleteOrderBySlug)
-
-router.post('/:slug', updateOrderBySlug)
-
-router.get('/:slug', getOrderBySlug)
-
-
-export default router
+export default router;

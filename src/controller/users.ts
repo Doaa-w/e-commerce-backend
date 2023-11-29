@@ -16,8 +16,7 @@ export const getAllUsers = async (req: Request, res: Response, next: NextFunctio
             message: 'All users are returned',
             payload:  users
         });
-    }
-    catch(error) {
+    } catch(error) {
         next(error);
     }
 };
@@ -30,8 +29,7 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
             message: 'User data is returned',
             payload:  user
         });
-    }
-    catch(error) {
+    } catch(error) {
         next(error);
     }
 };
@@ -41,7 +39,7 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
         const { first_name, last_name, email, password, phone, address } = req.body;
         await userExist(email);
         const hashedPassword = await bcrypt.hash(password, 10);
-        const userData = {
+        const userData = { //token payload? it has always be an object
             first_name,
             last_name,
             email,
@@ -70,8 +68,7 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
             message: 'Check your email to activate your account',
             token: token 
         });
-    }
-    catch(error) {
+    } catch(error) {
         next(error);
     }
 };
@@ -85,16 +82,17 @@ export const activateUserAccount = async (req: Request, res: Response, next: Nex
         }
         const decodedToken = jwt.verify(token, dev.app.jwtUserActivationKey);
         await User.create(decodedToken);        
-        res.status(201).send({ message: 'User account created successfully' });   
-    }
-    catch (error) {
+        res.status(201).send({message: 'User account created successfully'});   
+    } catch (error) {
         if (error instanceof TokenExpiredError) {
             const tokenExpiredError = new ApiError(401, 'Token has expired');
             next(tokenExpiredError);
-        } else if (error instanceof JsonWebTokenError) {
+        }
+        else if (error instanceof JsonWebTokenError) {
             const tokenInvalidError =  new ApiError(401, 'Invalid token');
             next(tokenInvalidError);
-        } else {
+        }
+        else {
             next(error);
         }
     }
@@ -107,8 +105,7 @@ export const updateUserById = async (req: Request, res: Response, next: NextFunc
             message: 'User data updated successfully',
             payload: user
         });
-    }
-    catch(error) {
+    } catch(error) {
         next(error);
     }
 };
@@ -118,8 +115,7 @@ export const deleteUserById = async (req: Request, res: Response, next: NextFunc
         const id = req.params.id;
         await removeUserById(id);
         res.status(204).json();
-    }
-    catch(error) {
+    } catch(error) {
         next(error);
     }
 };
@@ -137,8 +133,7 @@ export const banUser = async (req: Request, res: Response, next: NextFunction) =
                 message: 'The user has been successfully unbanned',
             });
         }
-    }
-    catch(error) {
+    } catch(error) {
         next(error);
     }
 };

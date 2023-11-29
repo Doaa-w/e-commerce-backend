@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
 import { UserType } from '../types';
@@ -35,12 +35,12 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: true,
-    trim: true,
+    trim: true
   },
   address: {
     type: String,
     trim: true,
-    minlength: [3, "address must be at least 3 characters"],
+    minlength: [3, "address must be at least 3 characters"]
   },
   isAdmin: {
     type: Boolean,
@@ -52,8 +52,8 @@ const userSchema = new mongoose.Schema({
   },
   // order: {
   // },
-},
-{ timestamps: true }
+  },
+  { timestamps: true }
 );
 
 export default mongoose.model<UserType>('User', userSchema);

@@ -5,7 +5,7 @@ import User from "../models/user";
 
 export const findAllUsers = async () => {
     const filter = {
-        isAdmin: {$ne: true} // $ne means not equal
+        isAdmin: { $ne: true } // $ne means not equal
     };
     const options = {
         password: 0,
@@ -22,7 +22,7 @@ export const findSingleUser = async (id: string) => {
         updatedAt: 0,
         __v: 0
     }
-    const user = await User.findById({_id: id}, options);
+    const user = await User.findById({ _id: id }, options);
     if(!user) {
         const error = new ApiError(404, "User is not found");
         throw error;
@@ -31,7 +31,7 @@ export const findSingleUser = async (id: string) => {
 };
 
 export const userExist = async (email: string) => {
-    const userExist = await User.exists({email: email});
+    const userExist = await User.exists({ email: email });
     if (userExist) {
         const error = new ApiError(409, "User account already exists");
         throw error;       
@@ -40,7 +40,7 @@ export const userExist = async (email: string) => {
 
 export const updateSingleUserById = async (req: Request) => {
     const id = req.params.id;
-    const user = await User.findOneAndUpdate({_id: id}, req.body, {new: true});
+    const user = await User.findOneAndUpdate({ _id: id }, req.body, { new: true });
     if(!user) {
     const error = new ApiError(404, "User is not found");
     throw error;
@@ -49,7 +49,7 @@ export const updateSingleUserById = async (req: Request) => {
 };
 
 export const removeUserById = async (id: string) => {
-    const user = await User.findOneAndDelete({_id: id});
+    const user = await User.findOneAndDelete({ _id: id });
     if(!user) {
     const error = new ApiError(404, "User is not found");
     throw error;
@@ -59,7 +59,7 @@ export const removeUserById = async (id: string) => {
 export const banUserById = async (req: Request) => {
     const id = req.params.id;
     const isBanned = req.body.isBanned;
-    const user = await User.findOneAndUpdate({_id: id}, {isBanned: isBanned}, {new: true});
+    const user = await User.findOneAndUpdate({ _id: id }, { isBanned: isBanned }, { new: true });
     if(!user) {
         const error = new ApiError(404, "User is not found");
         throw error;

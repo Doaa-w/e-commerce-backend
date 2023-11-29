@@ -23,8 +23,7 @@ export const handleSendEmail = async (emailData:EmailDataType) => {
         };
         const info = await transporter.sendMail(mailOptions);
         console.log(`Message sent: ${info.response}`);
-    }
-    catch (error) {
+    } catch (error) {
         console.error("Error encountred while sending email", error);
         throw error;
     }

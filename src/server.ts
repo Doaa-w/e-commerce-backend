@@ -1,6 +1,6 @@
-import express, { Request, Response, NextFunction, Application } from "express";
+import express, { Application } from 'express';
 
-import { dev } from "./config";
+import { dev } from './config';
 import { connectDB } from './config/db';
 
 import usersRouter from './routers/users';
@@ -9,31 +9,30 @@ import ordersRouter from './routers/orders';
 import categoriesRouter from './routers/categories';
 
 import myLogger from './middlewares/logger';
-import { createHttpError } from './util/createHttpError';
 import { apiErrorHandler } from './middlewares/errorHandler';
+import { createHttpError } from './util/createHttpError';
 
 const app: Application = express();
 const port: number = dev.app.port;
 
 app.use(myLogger);
-app.use(express.json())
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
 
 app.use('/api/products', productsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/categories', categoriesRouter);
 
-
-
 app.listen(port, async () => {
   console.log('Server running http://localhost:' + port);
   connectDB();
 });
 
+// check this
 app.use((res, req, next) => {
-  const error = createHttpError(404, 'Router no found')
-  next(error)
+  const error = createHttpError(404, 'Router no found');
+  next(error);
 });
-app.use(apiErrorHandler)
+
+app.use(apiErrorHandler);
