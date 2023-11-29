@@ -1211,3 +1211,8 @@ Method: GET, Path: /api/users/, Date: ١٥‏/٥‏/١٤٤٥ هـ, Time: ١:١٦
 Method: GET, Path: /api/users/656664750163fad05e9daeb9, Date: ١٥‏/٥‏/١٤٤٥ هـ, Time: ١:١٧:٠٩ ص
 Method: GET, Path: /api/users/656664750163fad05e9daeb9, Date: ١٥‏/٥‏/١٤٤٥ هـ, Time: ١:١٧:٢٤ ص
 Method: GET, Path: /api/users/656664750163fad99e9daeb9, Date: ١٥‏/٥‏/١٤٤٥ هـ, Time: ١:١٧:٣٠ ص
+Method: PUT, Path: /api/users/ban/656664750163fad05e9daeb8, Date: ١٥‏/٥‏/١٤٤٥ هـ, Time: ٧:٤٥:٢٣ ص
+Method: PUT, Path: /api/users/ban/656664750163fad05e9daeb9, Date: ١٥‏/٥‏/١٤٤٥ هـ, Time: ٧:٤٥:٢٩ ص
+Method: GET, Path: /api/users/656664750163fad05e9daeb9, Date: ١٥‏/٥‏/١٤٤٥ هـ, Time: ٧:٤٥:٣٤ ص
+Method: PUT, Path: /api/users/ban/656664750163fad05e9daeb9, Date: ١٥‏/٥‏/١٤٤٥ هـ, Time: ٧:٤٥:٤٩ ص
+Method: GET, Path: /api/users/656664750163fad05e9daeb9, Date: ١٥‏/٥‏/١٤٤٥ هـ, Time: ٧:٤٥:٥٥ ص

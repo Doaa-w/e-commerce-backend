@@ -56,18 +56,13 @@ export const removeUserById = async (id: string) => {
     }
 };
 
-export const banUserById = async (id: string) => {
-    const user = await User.findOneAndUpdate({_id: id}, {isBanned: true});
+export const banUserById = async (req: Request) => {
+    const id = req.params.id;
+    const isBanned = req.body.isBanned;
+    const user = await User.findOneAndUpdate({_id: id}, {isBanned: isBanned}, {new: true});
     if(!user) {
-    const error = new ApiError(404, "User is not found");
-    throw error;
+        const error = new ApiError(404, "User is not found");
+        throw error;
     }
-};
-
-export const unbanUserById = async (id: string) => {
-    const user = await User.findOneAndUpdate({_id: id}, {isBanned: false});
-    if(!user) {
-    const error = new ApiError(404, "User is not found");
-    throw error;
-    }
+    return user;
 };
