@@ -1446,3 +1446,4 @@ Method: PUT, Path: /api/products/iphone-14-pros, Date: ١٦‏/٥‏/١٤٤٥ ه
 Method: PUT, Path: /api/products/iphone-14-pro, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٢:٣١:٥٣ ص
 Method: PUT, Path: /api/products/iphone-14-pros, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٢:٣٣:١٨ ص
 Method: PUT, Path: /api/products/iphone-14-pro, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٢:٣٣:٢٢ ص
+Method: GET, Path: /api/products, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ٤:٢٧:٣٧ ص

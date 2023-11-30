@@ -4,7 +4,6 @@ import Product from '../models/product';
 import { IProduct, ProductInput, ProductType } from '../types';
 
 import ApiError from '../errors/ApiError';
-import { Request } from 'express';
 // import { createHttpError } from '../util/createHttpError';
 
 export const getProducts = async (pageParam = 1, limitParam = 10, search = '') => {
@@ -25,7 +24,7 @@ export const getProducts = async (pageParam = 1, limitParam = 10, search = '') =
     pageParam = totalPages;
   }
   const skip = (pageParam - 1) * limitParam;
-  const payload = await Product.find(filter, options).populate('category').skip(skip).limit(limitParam);
+  const payload = await Product.find(filter, options).populate('category').sort({title: 1}).skip(skip).limit(limitParam);
   return {
     payload,
     totalPages,
