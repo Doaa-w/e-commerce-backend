@@ -6,6 +6,7 @@ import { createTheCategory, deleteTheCategory, getAllTheCategory, getTheCategory
 
 export const getAllCategories =  async (req: Request , res: Response , next:NextFunction)=>{
     try {
+      const search = req.query.search as string ||""
       const categories = await getAllTheCategory() 
       
         res.status(200).json({message: 'all categories are here' , payload: categories})  

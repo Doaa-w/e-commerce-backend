@@ -1123,3 +1123,10 @@ Method: PUT, Path: /api/categories/nsamesj, Date: ١٦‏/٥‏/١٤٤٥ هـ, T
 Method: PUT, Path: /api/categories/nsamesj, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٠:٥٨:٤٢ ص
 Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٠:٥٩:٢١ ص
 Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:٠٨:٣٤ ص
+Method: GET, Path: /api/products, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:١٣:٤٢ ص
+Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:١٤:٥٦ ص
+Method: PUT, Path: /api/categories/eleco, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:١٥:٣٤ ص
+Method: GET, Path: /api/categories/eleco, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:١٦:٣١ ص
+Method: GET, Path: /api/categories/eleco2, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:١٦:٤٤ ص
+Method: GET, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:١٧:٠١ ص
+Method: GET, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:١٨:٤٣ ص
