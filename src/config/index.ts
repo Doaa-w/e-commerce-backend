@@ -9,6 +9,6 @@ export const dev = {
         defaultProductImage: process.env.DEFAULT_IMAGE_PATH || 'default-image-path'
     },
     db: {
-        url: process.env.MONGODB_URL || 'mongodb://localhost:27017/ecommerce-db'
+        url: process.env.MONGODB_URL ||  'mongodb://localhost:27017/ecommerce-db'
     }
 };

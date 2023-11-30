@@ -8,6 +8,6 @@ router.get('/', getAllOrders);
 router.get('/:slug', getOrderBySlug);
 router.post('/', createOrder);
 router.delete('/:slug', deleteOrderBySlug);
-router.post('/:slug', updateOrderBySlug);
+router.put('/:slug', updateOrderBySlug);
 
 export default router;

@@ -93,3 +93,29 @@ export const updateSingleProduct = async (req: Request, res: Response, next: Nex
     next(error);
   }
 };
+  // filter part : 
+  
+export const getFilteredProducts = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { category, priceRangeMin, priceRangeMax } = req.query;
+
+    const filter: any = {};
+
+    if (category) {
+      filter.category = category;
+    }
+
+    if (priceRangeMin && priceRangeMax) {
+      filter.price = { $gte: Number(priceRangeMin), $lte: Number(priceRangeMax) };
+    }
+
+    const products = await product.find(filter);
+
+    res.status(200).json({
+      message: 'Returns filtered products',
+      payload: products,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
