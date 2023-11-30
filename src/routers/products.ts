@@ -1,6 +1,8 @@
 import { Router } from 'express';
 
-import { createSingleProduct, deleteSingleProducts, getAllProducts, getSingleProductsBySlug, updateSingleProduct } from '../controller/products';
+import { createSingleProduct, deleteSingleProducts, getAllProducts, getFilteredProducts, getSingleProductsBySlug, updateSingleProduct } from '../controller/products';
+import { upload } from '../middlewares/uploadFile';
+
 import { createProductValidation, updateProductValidation } from '../validation/vaildations';
 import { runValidation } from '../validation/runValidation';
 
