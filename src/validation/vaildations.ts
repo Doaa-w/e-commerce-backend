@@ -4,6 +4,7 @@ export const categoryValidations: ValidationChain[] =[
 check('name')
 .trim()
 .notEmpty()
+.isLength({min: 2})
 .withMessage('provid name for the category')
 ]
 
@@ -22,12 +23,19 @@ check('price')
 .withMessage('provid price for the product')
 .isInt({ min:2})
 .withMessage('must be a number') ,
+check('image')
+.notEmpty()
+.withMessage('provid an image for the product'),
 check('category')
 .trim()
 .notEmpty()
 .withMessage('provid a category')
 .isMongoId()
 .withMessage('ID is not correct'),
+check('sold')
+.trim()
+.notEmpty()
+.optional()
 ]
 
 export const updateProductValidation : ValidationChain[]=[

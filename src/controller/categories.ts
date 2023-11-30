@@ -7,6 +7,7 @@ import { createTheCategory, deleteTheCategory, getAllTheCategory, getTheCategory
 export const getAllCategories =  async (req: Request , res: Response , next:NextFunction)=>{
     try {
       const categories = await getAllTheCategory() 
+      
         res.status(200).json({message: 'all categories are here' , payload: categories})  
         console.log(categories)
     } catch (error) {

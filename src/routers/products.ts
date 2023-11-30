@@ -10,8 +10,8 @@ import { runValidation } from '../validation/runValidation';
 const router = Router()
 router.get(`/`, getAllProducts)
 router.get('/:slug', getSingleProductsBySlug)
-router.post(`/`, createProductValidation,runValidation, createSingleProduct)
-router.put(`/:slug`,updateProductValidation,runValidation, updateSingleProduct)
+router.post(`/`, createProductValidation, runValidation, createSingleProduct)
+router.put(`/:slug`,updateProductValidation, runValidation, updateSingleProduct)
 router.delete(`/:slug`, deleteSingleProducts)
 
 export default router
