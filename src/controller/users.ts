@@ -6,7 +6,7 @@ import { dev } from "../config";
 import ApiError from "../errors/ApiError";
 
 import User from "../models/user";
-import { findAllUsers, updateSingleUserById, removeUserById, userExist, findSingleUser, banUserById } from "../services/userService";
+import { findAllUsers, updateSingleUserById, removeUserById, userExist, findSingleUser, updateBanStatusById } from "../services/userService";
 import { handleSendEmail } from "../helper/sendEmail";
 
 export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
@@ -122,7 +122,7 @@ export const deleteUserById = async (req: Request, res: Response, next: NextFunc
 
 export const banUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user = await banUserById(req);
+        const user = await updateBanStatusById(req);
         if (user.isBanned) {
             res.status(200).send({
                 message: 'The user has been successfully banned',

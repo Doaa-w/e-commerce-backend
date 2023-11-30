@@ -56,7 +56,7 @@ export const removeUserById = async (id: string) => {
     }
 };
 
-export const banUserById = async (req: Request) => {
+export const updateBanStatusById = async (req: Request) => {
     const id = req.params.id;
     const isBanned = req.body.isBanned;
     const user = await User.findOneAndUpdate({ _id: id }, { isBanned: isBanned }, { new: true });
