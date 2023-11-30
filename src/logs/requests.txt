@@ -1130,3 +1130,12 @@ Method: GET, Path: /api/categories/eleco, Date: ١٦‏/٥‏/١٤٤٥ هـ, Tim
 Method: GET, Path: /api/categories/eleco2, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:١٦:٤٤ ص
 Method: GET, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:١٧:٠١ ص
 Method: GET, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:١٨:٤٣ ص
+Method: GET, Path: /api/products, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:٢١:١٠ ص
+Method: GET, Path: /api/products, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:٢١:٢٧ ص
+Method: GET, Path: /api/products, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:٢٢:٣٢ ص
+Method: GET, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:٢٣:٢٠ ص
+Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:٢٥:١٤ ص
+Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:٢٥:٢٤ ص
+Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:٢٥:٣٩ ص
+Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:٢٥:٤٧ ص
+Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١١:٢٥:٥٣ ص

@@ -5,7 +5,7 @@ check('name')
 .trim()
 .notEmpty()
 .isLength({min: 2})
-.withMessage('provid name for the category')
+.withMessage('provid name for the category the name should be more than 2 characters')
 ]
 
 export const createProductValidation: ValidationChain[] =[
@@ -29,7 +29,7 @@ check('image')
 check('category')
 .trim()
 .notEmpty()
-.withMessage('provid a category')
+.withMessage('provid the category')
 .isMongoId()
 .withMessage('ID is not correct'),
 check('sold')
@@ -80,4 +80,6 @@ export const userValidation: ValidationChain[]=[
     .trim()
     .notEmpty()
     .withMessage('passwoed is required')
+    .isLength({min:5 })
+    .withMessage('password must to be more than 5 characters')
 ]
