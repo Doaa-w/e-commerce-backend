@@ -59,5 +59,5 @@ if (updateCategoryData.name && updateCategoryData.name !== categoryExists.name){
         {slug: slug},
         updateCategoryData,
         {new: true})  
-        return updateCategoryData
+        return updatedCategory
 }
