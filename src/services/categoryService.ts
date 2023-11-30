@@ -48,7 +48,7 @@ export const deleteTheCategory= async (slug:string)=>{
 }
 
 export const updateTheCategory= async(slug: any , updateCategoryData: categoryI)=>{
-    const categoryExists = await category.findOneAndUpdate({ slug: slug })
+    const categoryExists = await category.findOne({ slug: slug })
   if (!categoryExists) {
     throw new ApiError(404, 'category not found!')
   }

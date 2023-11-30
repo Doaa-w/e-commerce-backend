@@ -1093,3 +1093,7 @@ Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١
 Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٠:٣٧:٥٣ ص
 Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٠:٤٠:٤٦ ص
 Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٠:٤١:٠٦ ص
+Method: POST, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٠:٤٤:٠٨ ص
+Method: GET, Path: /api/categories, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٠:٤٤:٢٧ ص
+Method: PUT, Path: /api/categories/nsamesj, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٠:٤٤:٥٥ ص
+Method: PUT, Path: /api/categories/nsamesj, Date: ١٦‏/٥‏/١٤٤٥ هـ, Time: ١٠:٤٥:٣٤ ص
