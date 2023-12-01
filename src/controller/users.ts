@@ -47,10 +47,10 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
             phone,
             address
         };
-        const token = jwt.sign(userData, dev.app.jwtUserActivationKey, { expiresIn: '1m' }); 
+        const token = jwt.sign(userData, dev.app.jwtUserActivationKey, { expiresIn: '10m' }); 
         const emailData = {
             email: email,
-            subject: 'Activate you account',
+            subject: 'Activate your account',
             html: 
             `
             <h3>Dear ${first_name} ${last_name},</h3>

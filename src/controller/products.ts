@@ -109,7 +109,7 @@ export const getFilteredProducts = async (req: Request, res: Response, next: Nex
       filter.price = { $gte: Number(priceRangeMin), $lte: Number(priceRangeMax) };
     }
 
-    const products = await product.find(filter);
+    const products = await Product.find(filter);
 
     res.status(200).json({
       message: 'Returns filtered products',

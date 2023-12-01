@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
 
 import { UserType } from '../types';
 
@@ -30,7 +29,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true,
     minlength: [6, "password must be at least 6 characters"],
-    set: (password: string) => bcrypt.hashSync(password, 10)
   },
   phone: {
     type: String,

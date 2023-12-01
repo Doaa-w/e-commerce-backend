@@ -12,7 +12,7 @@ export const findAllUsers = async () => {
         updatedAt: 0,
         __v: 0
     }
-    const users = await User.find(filter, options).populate('Order');
+    const users = await User.find(filter, options)/*.populate('Order')*/;
     return users;
 };
 
