@@ -1,14 +1,17 @@
 import { Request, Response, NextFunction } from "express";
 
-import { createTheCategory, deleteTheCategory, getAllTheCategory, getTheCategory, updateTheCategory } from "../services/category";
+import { createTheCategory, deleteTheCategory, getAllTheCategory, getTheCategory, updateTheCategory } from "../services/categoryService";
 
-export const getAllCategories = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const categories = await getAllTheCategory();
-    res.status(200).json({ message: 'all categories are here' , payload: categories });
-  } catch (error) {
-    next(error);
-  }
+
+
+export const getAllCategories =  async (req: Request , res: Response , next:NextFunction)=>{
+    try {
+      const search = req.query.search as string;
+      const categories = await getAllTheCategory();
+      res.status(200).json({message: 'all categories are here' , payload: categories});
+    } catch (error) {
+        next(error);
+    }
 };
 
 export const getSinglrCategory = async (req: Request, res: Response, next: NextFunction ) => {

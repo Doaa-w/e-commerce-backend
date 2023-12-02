@@ -12,8 +12,8 @@ const router = Router();
 router.get('/', getAllProducts);
 router.get('/:slug', getSingleProductsBySlug);
 router.get('/filtered-products', getFilteredProducts);
-router.post('/', isLoggedIn, isAdmin, /*createProductValidation, runValidation,*/ upload.single('image'), createSingleProduct);
-router.put('/:slug', isLoggedIn, isAdmin, /*createProductValidation, runValidation,*/ updateSingleProduct);
+router.post('/', isLoggedIn, isAdmin, createProductValidation, runValidation, upload.single('image'), createSingleProduct);
+router.put('/:slug', isLoggedIn, isAdmin, createProductValidation, runValidation, updateSingleProduct);
 router.delete('/:slug', isLoggedIn, isAdmin, deleteSingleProducts);
 
 export default router;

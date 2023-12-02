@@ -1,4 +1,4 @@
-import { OrderDocument } from "./order";
+import { IOrder } from "./order";
 
 export type UserType = {
     _id: string;
@@ -8,7 +8,7 @@ export type UserType = {
     password: string;
     phone: string;
     address?: string;
-    order?: OrderDocument[];
+    order?: IOrder;
     isAdmin?: boolean;
     isBanned?: boolean;
     createdAt?: Date;

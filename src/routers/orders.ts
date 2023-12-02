@@ -1,13 +1,25 @@
-import { Router } from 'express';
+import { Router } from 'express' 
 
-import { createOrder, getAllOrders, deleteOrderBySlug, updateOrderBySlug, getOrderBySlug } from '../controller/orders';
+import {
+  getAllOrders,
+  getOrderById,
+  createOrder,
+  updatedOrderById,
+  deleteOrderById,
+} from '../controller/orders'
+// Middlewares
+import { isLoggedIn, isAdmin } from '../middlewares/auth'
 
-const router = Router();
+const router = Router()
 
-router.get('/', getAllOrders);
-router.get('/:slug', getOrderBySlug);
-router.post('/', createOrder);
-router.delete('/:slug', deleteOrderBySlug);
-router.put('/:slug', updateOrderBySlug);
+router.get('/', isLoggedIn, isAdmin, getAllOrders)
 
-export default router;
+router.get('/:id', isLoggedIn, getOrderById)
+
+router.post('/', isLoggedIn, createOrder)
+
+router.put('/:id', isLoggedIn, isAdmin, updatedOrderById)
+
+router.delete('/:id', isLoggedIn, isAdmin, deleteOrderById)
+
+export default router
