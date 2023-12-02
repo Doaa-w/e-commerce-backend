@@ -1,95 +1,90 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from 'express'
+import mongoose, { Error } from 'mongoose'
 
-import order from "../models/order";
+import {
+  getOrders,
+  findOrder,
+  createNewOrder,
+  updateOrder,
+  deleteOrder,
+} from '../services/orderService'
+import { createHttpError } from '../util/createHttpError'
 
-// export const createOrder = async (req: Request , res: Response , next:NextFunction)=>{
-// try {
-//     const { name, products } = req.body
-
-//   const order = new Order({
-//     name,
-//     products,
-//   })
-//   console.log('orderId:', order._id)
-
-//   const user = new User({
-//     name: 'Walter',
-//     order: order._id,
-//   })
-
-//   await order.save()
-//   await user.save()
-//   res.json(order)
-
-// } catch (error) {
-//     next(error)
-// }
-//  }
-
-export const createOrder = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { name, products, slug } = req.body;
-    const newOrder = new order({
-      name,
-      products,
-      slug,
-    });
-    const savedOrder = await newOrder.save();
-    res.status(201).json(savedOrder);
-  } catch (error) {
-    next(error)
-  }
-}
 
 export const getAllOrders = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const orders = await order.find().populate('products')
-    res.status(200).json(orders)
+    const orders = await getOrders()
+    res.status(200).json({
+      success: true,
+      message: 'Orders fetched successfully',
+      payload: orders,
+    })
   } catch (error) {
-    next(error)
+    return next(error)
   }
 }
 
-export const getOrderBySlug = async (req: Request, res: Response, next: NextFunction) => {
+export const getOrderById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const orderSlug = req.params.slug;
-    const orders = await order.findOne({ slug: orderSlug }).populate('products');
-    if (!orders) {
-      return res.status(404).json({ message: 'Order not found' })
-    }
-    res.status(200).json(orders);
+    const { id } = req.params
+
+    const newOrder = await findOrder(id)
+
+    res.status(200).json({ message: 'Get Category Successfully!', payload: newOrder })
   } catch (error) {
-    next(error)
+    if (error instanceof mongoose.Error.CastError) {
+      next(createHttpError(400, 'id format not valid'))
+    } else {
+      return next(error)
+    }
   }
 }
 
-export const updateOrderBySlug = async (req: Request, res: Response, next: NextFunction) => {
+export const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const orderSlug = req.params.slug;
-    const { name, products } = req.body;
-    const updatedOrder = await order.findOneAndUpdate(
-      { slug: orderSlug },
-      { name, products },
-      { new: true }
-    );
-    if (!updatedOrder) {
-      return res.status(404).json({ message: 'Order not found' })
-    }
-    res.status(200).json(updatedOrder);
+    const newOrder = await createNewOrder(req.body)
+
+    res.status(201).json({
+      message: 'Added New Order Successfully!',
+      payload: newOrder,
+    })
   } catch (error) {
-    next(error)
+    if (error instanceof Error.ValidationError) {
+      const errorMessages = Object.values(error.errors).map((error) => error.message)
+      res.status(400).json({ errors: errorMessages })
+      next(createHttpError(400, errorMessages.join(', ')))
+    } else {
+      return next(error)
+    }
   }
 }
 
-export const deleteOrderBySlug = async (req: Request, res: Response, next: NextFunction) => {
+
+export const updatedOrderById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const orderSlug = req.params.slug;
-    const deletedOrder = await order.findOneAndDelete({ slug: orderSlug });
-    if (!deletedOrder) {
-      return res.status(404).json({ message: 'Order not found' })
-    }
-    res.status(204).send();
+    const id = req.params.id
+    const order = req.body
+    const updatedOrder = await updateOrder(id, order)
+    res.status(200).json({ message: 'Updated order successfully!', payload: updatedOrder })
   } catch (error) {
-    next(error)
+    if (error instanceof Error.CastError) {
+      next(createHttpError(400, 'id format not valid'))
+    } else {
+      return next(error)
+    }
+  }
+}
+
+export const deleteOrderById = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = req.params.id
+    const deletedOrder = await deleteOrder(id)
+    res.status(200).json({ message: 'deleted order successfully!', payload: deletedOrder })
+  } catch (error) {
+    if (error instanceof mongoose.Error.CastError) {
+      next(createHttpError(400, 'id format not valid'))
+    } else {
+      return next(error)
+    }
   }
 }

@@ -1,33 +1,27 @@
-import mongoose from 'mongoose';
-import slugify from 'slugify';
+import { Schema, model } from 'mongoose'
 
-import { OrderDocument } from '../types/order';
+import { IProduct } from '../types/product'
+import { IOrder } from '../types/order'
 
-const orderSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  products: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Product',
+const orderSchema = new Schema(
+  {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
-  ],
-  slug: {
-    type: String,
-    unique: true,
+    products: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true,
+      },
+    ],
   },
-  user: {
-    type: String, // Use the slug of the User model
-    ref: 'User',
-    required: true,
-  },
-})
+  { timestamps: true }
+)
+orderSchema.path('products').validate(function (value: IProduct['slug'][]) {
+  return value.length >= 1
+}, 'Must have at least one product')
 
-orderSchema.pre<OrderDocument>('save', function (next) {
-  this.slug = slugify(this.name, { lower: true })
-  next()
-})
-
-export default mongoose.model<OrderDocument>('Order', orderSchema)
+export const Order = model<IOrder>('Order', orderSchema)
