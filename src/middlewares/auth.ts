@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import { JwtPayload } from 'jsonwebtoken';
 
-import { dev } from '../config';
 import ApiError from '../errors/ApiError';
 import User from '../models/user';
+import { verifyToken } from '../util/verifyToken';
 
 interface CustomRequest extends Request {
     userId?: string;
@@ -11,15 +11,15 @@ interface CustomRequest extends Request {
 
 export const isLoggedIn = (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        const accessToken = req.cookies.access_token;
+        const accessToken: string = req.cookies.access_token;
         if (!accessToken) {
             throw new ApiError(401, "You are not logged in");
         }
-        const decodedAccessToken = jwt.verify(accessToken, dev.app.jwtUserAccessKey) as JwtPayload;
-        if (!decodedAccessToken) {
+        const verifiedAccessToken: JwtPayload = verifyToken(accessToken);
+        if (!verifiedAccessToken) {
             throw new ApiError(401, "Invalid access token");
         }
-        req.userId = decodedAccessToken._id;
+        req.userId = verifiedAccessToken._id;
         next();
     } catch(error) {
         next(error);
@@ -28,7 +28,7 @@ export const isLoggedIn = (req: CustomRequest, res: Response, next: NextFunction
 
 export const isLoggedOut = (req: Request, res: Response, next: NextFunction) => {
     try {
-        const accessToken = req.cookies.access_token;
+        const accessToken: string = req.cookies.access_token;
         if (accessToken) {
             throw new ApiError(401, "You are already logged in");
         }

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { getAllUsers, updateUserById, deleteUserById, register, activateUserAccount, getUserById, banUser } from '../controller/users';
+import { getAllUsers, getUserById, register, activateUserAccount, updateUserById, deleteUserById, banUser } from '../controller/users';
 import { isAdmin, isLoggedIn, isLoggedOut } from '../middlewares/auth';
 
 const router = Router();

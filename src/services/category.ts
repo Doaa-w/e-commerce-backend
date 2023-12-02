@@ -1,7 +1,7 @@
 import slugify from "slugify";
 
 import { category } from "../models/category";
-import { CategoryInput, categoryI } from "../types";
+import { CategoryInput } from "../types/category";
 import ApiError from "../errors/ApiError";
 import { Request } from "express";
 

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import slugify from 'slugify';
 
-import { OrderDocument } from '../types';
+import { OrderDocument } from '../types/order';
 
 const orderSchema = new mongoose.Schema({
   name: {

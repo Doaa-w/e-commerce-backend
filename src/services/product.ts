@@ -1,7 +1,7 @@
 import slugify from 'slugify';
 
 import Product from '../models/product';
-import { IProduct, ProductInput, ProductType } from '../types';
+import { IProduct, ProductInput, ProductType } from '../types/product';
 
 import ApiError from '../errors/ApiError';
 // import { createHttpError } from '../util/createHttpError';

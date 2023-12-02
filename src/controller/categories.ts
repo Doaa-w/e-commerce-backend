@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-import { createTheCategory, deleteTheCategory, getAllTheCategory, getTheCategory, updateTheCategory } from "../services/categoryService";
+import { createTheCategory, deleteTheCategory, getAllTheCategory, getTheCategory, updateTheCategory } from "../services/category";
 
 export const getAllCategories = async (req: Request, res: Response, next: NextFunction) => {
   try {

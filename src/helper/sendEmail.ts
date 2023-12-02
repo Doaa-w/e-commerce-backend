@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
-import { dev } from '../config';
 
-import { EmailDataType } from '../types';
+import { dev } from '../config';
+import { EmailDataType } from '../types/user';
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-export const handleSendEmail = async (emailData:EmailDataType) => {
+export const handleSendEmail = async (emailData: EmailDataType) => {
     try {
         const mailOptions = {
             from: dev.app.smtpUsername,

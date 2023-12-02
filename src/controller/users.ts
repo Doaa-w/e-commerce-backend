@@ -1,13 +1,14 @@
 import { Request, Response , NextFunction } from "express";
-import jwt, { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
+import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
-import { dev } from "../config";
-import ApiError from "../errors/ApiError";
-
 import User from "../models/user";
-import { findAllUsers, updateSingleUserById, removeUserById, userExist, findSingleUser, updateBanStatusById } from "../services/userService";
+import { findAllUsers, findSingleUser, isUserExist, isTokenExist, updateSingleUser, removeUser, updateBanStatus } from "../services/user";
 import { handleSendEmail } from "../helper/sendEmail";
+import { generateToken } from "../util/generateToken";
+import { verifyToken } from "../util/verifyToken";
+import { EmailDataType, UserInputType } from "../types/user";
+import ApiError from "../errors/ApiError";
 
 export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -37,9 +38,9 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
 export const register = async (req: Request, res: Response, next:NextFunction) => {
     try {
         const { first_name, last_name, email, password, phone, address } = req.body;
-        await userExist(email);
+        await isUserExist(email);
         const hashedPassword = await bcrypt.hash(password, 10);
-        const userData = { //token payload? it has always be an object
+        const tokenPayload: UserInputType = {
             first_name,
             last_name,
             email,
@@ -47,8 +48,8 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
             phone,
             address
         };
-        const token = jwt.sign(userData, dev.app.jwtUserActivationKey, { expiresIn: '10m' }); 
-        const emailData = {
+        const token = generateToken(tokenPayload);
+        const emailDetails: EmailDataType = {
             email: email,
             subject: 'Activate your account',
             html: 
@@ -63,7 +64,7 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
             <h4>Welcome aboard, and thank you for choosing our shop!</h4>
             `
         };
-        await handleSendEmail(emailData);
+        await handleSendEmail(emailDetails);
         res.status(200).send({ 
             message: 'Check your email to activate your account',
             token: token 
@@ -75,13 +76,10 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
 
 export const activateUserAccount = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const token = req.body.token;
-        if (!token) {
-            const error = new ApiError(404, "Please provide a token");
-            throw error;
-        }
-        const decodedToken = jwt.verify(token, dev.app.jwtUserActivationKey);
-        await User.create(decodedToken);        
+        const token: string = req.body.token;
+        await isTokenExist(token);
+        const verifiedToken = verifyToken(token);
+        await User.create(verifiedToken);        
         res.status(201).send({message: 'User account created successfully'});   
     } catch (error) {
         if (error instanceof TokenExpiredError) {
@@ -100,7 +98,7 @@ export const activateUserAccount = async (req: Request, res: Response, next: Nex
 
 export const updateUserById = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user = await updateSingleUserById(req);
+        const user = await updateSingleUser(req);
         res.status(200).send({
             message: 'User data updated successfully',
             payload: user
@@ -113,7 +111,7 @@ export const updateUserById = async (req: Request, res: Response, next: NextFunc
 export const deleteUserById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const id = req.params.id;
-        await removeUserById(id);
+        await removeUser(id);
         res.status(204).json();
     } catch(error) {
         next(error);
@@ -122,7 +120,8 @@ export const deleteUserById = async (req: Request, res: Response, next: NextFunc
 
 export const banUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user = await updateBanStatusById(req);
+        const id = req.params.id;
+        const user = await updateBanStatus(id, true);
         if (user.isBanned) {
             res.status(200).send({
                 message: 'The user has been successfully banned',

@@ -7,9 +7,8 @@ import {
   getProducts,
   getSingleProduct,
   updateProduct,
-} from '../services/productService';
+} from '../services/product';
 
-import { IProduct } from '../types';
 import Product from '../models/product';
 
 import { dev } from '../config';
