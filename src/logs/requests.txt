@@ -2273,3 +2273,5 @@ Method: POST, Path: /api/products, Date: 12/3/2023, Time: 8:58:31 AM
 Method: DELETE, Path: /api/products/aaa, Date: 12/3/2023, Time: 8:58:34 AM
 Method: POST, Path: /api/products, Date: 12/3/2023, Time: 8:59:21 AM
 Method: DELETE, Path: /api/products/aaa, Date: 12/3/2023, Time: 8:59:26 AM
+Method: GET, Path: /, Date: 12/3/2023, Time: 12:43:07 PM
+Method: GET, Path: /products, Date: 12/3/2023, Time: 1:47:15 PM
