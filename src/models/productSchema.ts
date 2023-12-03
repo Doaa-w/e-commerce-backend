@@ -3,17 +3,17 @@ import mongoose from 'mongoose';
 import { IProduct } from '../types/productType';
 
 const productSchema = new mongoose.Schema<IProduct>({
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: [3, 'Product title must be at least 3 characters long'],
+    maxlength: [50, 'Product title must be at most 50 characters long']
+  },
   slug: {
     type: String,
     unique: true,
     lowercase: true,
-  },
-  title: {
-    type: String,
-    required: [true, 'Product title is required'],
-    trim: true,
-    minlength: [3, 'Product title must be at least 3 characters long'],
-    maxlength: [50, 'Product title must be at most 50 characters long']
   },
   image: {
     type: String,
@@ -35,19 +35,20 @@ const productSchema = new mongoose.Schema<IProduct>({
     type: Number,
     required: [true, 'Quantity is required'],
     min: [0, 'Quantity cannot be negative'],
-    validate: {
-      validator: Number.isInteger,
-      message: 'Quantity must be an integer',
-    }
+  //   validate: {
+  //     validator: Number.isInteger,
+  //     message: 'Quantity must be an integer',
+  //   }
   },
   sold: {
     type: Number,
-    required: [true, 'Sold count is required'],
+    default: 0,
+    // required: [true, 'Sold count is required'],
     min: [0, 'Sold count cannot be negative'],
-    validate: {
-      validator: Number.isInteger,
-      message: 'Sold count must be an integer',
-    }
+    // validate: {
+    //   validator: Number.isInteger,
+    //   message: 'Sold count must be an integer',
+    // }
   },
   shipping: {
     type: Number,

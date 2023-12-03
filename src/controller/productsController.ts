@@ -52,7 +52,6 @@ export const deleteSingleProducts = async (req: Request, res: Response, next: Ne
   }
 }
 
-
 export const createSingleProduct = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { title, price, description, quantity, category, sold, shipping } = req.body
@@ -97,7 +96,7 @@ export const updateSingleProduct = async (req: Request, res: Response, next: Nex
   }
 }
 
-// filter part :
+// filter part:
 export const getFilteredProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { category, priceRangeMin, priceRangeMax } = req.query

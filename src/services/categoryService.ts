@@ -15,7 +15,6 @@ export const getAllTheCategory = async( search='' )=>{
     updatedAt: 0,
     __v: 0
   }
-  // console.log('your search',search);
   const categories = await category.find(filter, options).sort({name: 1});
   if (!categories) {
     throw new ApiError(404, 'categories not found!');
@@ -38,7 +37,7 @@ export const getTheCategory = async(slug:string)=>{
 export const createTheCategory = async(categoryInput: CategoryInput)=>{
   const exsistCategory= await category.exists({name: categoryInput.name});
   if(exsistCategory){
-    throw new ApiError(404, "category exsist");
+    throw new ApiError(404, "category exist");
   }
   categoryInput.slug = slugify(categoryInput.name, { lower: true });
   const newCategory = new category(categoryInput);

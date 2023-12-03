@@ -3,6 +3,8 @@ import { rateLimit } from 'express-rate-limit';
 
 import { login, logout } from '../controller/authController';
 import { isLoggedOut } from '../middlewares/auth';
+import { loginValidation, userValidation } from '../validation/vaildations';
+import { runValidation } from '../validation/runValidation';
 
 const router = Router();
 
@@ -12,7 +14,7 @@ const limiter = rateLimit({
     message: 'You have reached maximum request, please try after 5 minutes'
 });
 
-router.post('/login', limiter, isLoggedOut, login);
+router.post('/login', limiter, isLoggedOut, loginValidation, runValidation, login);
 router.post('/logout', logout);
 
 export default router;

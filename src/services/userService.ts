@@ -12,7 +12,7 @@ export const findAllUsers = async () => {
         updatedAt: 0,
         __v: 0
     }
-    const users = await User.find(filter, options)/*.populate('Order')*/.sort({first_name: 1});
+    const users = await User.find(filter, options).populate('order').sort({first_name: 1});
     return users;
 };
 
