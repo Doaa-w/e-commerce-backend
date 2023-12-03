@@ -9,6 +9,21 @@ import {
   deleteOrder,
 } from '../services/orderService';
 import { createHttpError } from '../util/createHttpError';
+import { error } from 'console';
+
+
+/*export const handleProcessPayment = async (
+  req: Request,
+  res : Response,
+  next: NextFunction
+) => {
+  try {
+    res.send({ message: 'payment was successful and order was created'});
+  } catch{
+    (error)
+    next(error);
+  }
+}; */
 
 export const getAllOrders = async (req: Request, res: Response, next: NextFunction) => {
   try {

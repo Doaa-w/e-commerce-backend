@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 import { IProduct } from '../types/productType';
 import { IOrder } from '../types/orderType';
 
-const orderSchema = new Schema(
+/*const orderSchema = new Schema(
   {
     user: {
       type: Schema.Types.ObjectId,
@@ -19,7 +19,36 @@ const orderSchema = new Schema(
     ],
   },
   { timestamps: true }
-)
+)*/
+const orderSchema = new Schema(
+  {
+    products: [
+      {
+    product: {
+        type: Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true,
+      },
+      quantity: { type: Number, required: true, trim: true},
+    },
+    ],
+   // payment: { type: Object, required: true},
+    buyer: { type: Schema.Types.ObjectId, ref: 'User', required: true},
+    status: {
+      type: String,
+      enum: [
+      "Not processes",
+      "Processing",
+      "shipped",
+      "delivered",
+      "cancelled",
+      ],
+      default: 'not processed'
+    },
+  },
+  { timestamps: true }
+);
+
 orderSchema.path('products').validate(function (value: IProduct['slug'][]) {
   return value.length >= 1
 }, 'Must have at least one product')

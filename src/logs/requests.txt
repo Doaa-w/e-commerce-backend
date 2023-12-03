@@ -2591,3 +2591,5 @@ Method: POST, Path: /api/orders/, Date: ١٩‏/٥‏/١٤٤٥ هـ, Time: ٩:٤
 Method: POST, Path: /api/orders/, Date: ١٩‏/٥‏/١٤٤٥ هـ, Time: ٩:٤٤:٤٣ م
 Method: POST, Path: /api/orders/, Date: ١٩‏/٥‏/١٤٤٥ هـ, Time: ٩:٤٤:٥١ م
 Method: POST, Path: /api/orders/, Date: ١٩‏/٥‏/١٤٤٥ هـ, Time: ٩:٤٤:٥٩ م
+Method: GET, Path: /, Date: 12/3/2023, Time: 12:43:07 PM
+Method: GET, Path: /products, Date: 12/3/2023, Time: 1:47:15 PM
