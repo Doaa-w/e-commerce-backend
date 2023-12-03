@@ -32,24 +32,24 @@ export const getProducts = async (pageParam = 1, limitParam = 10, search = '') =
   }
 };
 
-export const getSingleProduct = async (slug: any) => {
+export const getSingleProduct = async (id: string) => {
   const options = {
     updatedAt: 0,
-    __v: 0
+    __v: 0,
   }
-  const product = await Product.findOne({ slug: slug }, options).populate('category');
+  const product = await Product.findById(id, options).populate('category')
   if (!product) {
-    throw new ApiError(404, 'Product not found!');
+    throw new ApiError(404, 'Product not found!')
   }
-  return product;
-};
+  return product
+}
 
-export const deleteProduct = async (slug: any) => {
-  const deletedProduct = await Product.findOneAndDelete({ slug: slug });
+export const deleteProduct = async (id: any) => {
+  const deletedProduct = await Product.findByIdAndDelete(id)
   if (!deletedProduct) {
-    throw new ApiError(404, 'Product not found!');
+    throw new ApiError(404, 'Product not found!')
   }
-};
+}
 
 export const createProduct = async (productInput: ProductInput): Promise<IProduct> => {
   const { title, price, image, description, quantity, category, sold, shipping } = productInput;

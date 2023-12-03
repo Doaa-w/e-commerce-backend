@@ -2194,3 +2194,15 @@ Method: GET, Path: /api/users, Date: ١٩‏/٥‏/١٤٤٥ هـ, Time: ٣:٢١:
 Method: GET, Path: /api/users, Date: ١٩‏/٥‏/١٤٤٥ هـ, Time: ٣:٢١:٣١ ص
 Method: GET, Path: /api/users, Date: ١٩‏/٥‏/١٤٤٥ هـ, Time: ٣:٢١:٥٦ ص
 >>>>>>> 75344f0765d45ea06080e85a67e0d7ec713a2c5f
+Method: GET, Path: /api/products, Date: 12/3/2023, Time: 7:25:32 AM
+Method: GET, Path: /api/products/656822de2e0436266d0aec78, Date: 12/3/2023, Time: 7:31:34 AM
+Method: GET, Path: /api/products/656822de2e0436266d0aec78, Date: 12/3/2023, Time: 7:31:43 AM
+Method: GET, Path: /api/products, Date: 12/3/2023, Time: 7:31:45 AM
+Method: GET, Path: /api/products/656834a555100e5937ebf2f4, Date: 12/3/2023, Time: 7:32:00 AM
+Method: GET, Path: /api/products/656834a555100e5937ebf2f4, Date: 12/3/2023, Time: 7:32:01 AM
+Method: GET, Path: /api/products/656834a555100e5937ebf2f4, Date: 12/3/2023, Time: 7:33:01 AM
+Method: GET, Path: /api/products/asdfghjkf, Date: 12/3/2023, Time: 7:33:14 AM
+Method: GET, Path: /api/products/asdfghjkf, Date: 12/3/2023, Time: 7:33:15 AM
+Method: GET, Path: /api/products/asdfghjkf, Date: 12/3/2023, Time: 7:33:16 AM
+Method: GET, Path: /api/products/656834a555100e5937ebf2f4, Date: 12/3/2023, Time: 7:33:49 AM
+Method: POST, Path: /api/products, Date: 12/3/2023, Time: 7:36:58 AM
