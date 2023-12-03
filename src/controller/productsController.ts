@@ -29,18 +29,18 @@ export const getAllProducts = async (req: Request, res: Response, next: NextFunc
   }
 };
 
-export const getSingleProductsBySlug = async (req: Request, res: Response, next: NextFunction) => {
+export const getSingleProductById = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const slug = req.params.slug;
-    const product = await getSingleProduct(slug);
+    const id = req.params.id 
+    const product = await getSingleProduct(id)
     res.status(200).json({
       message: 'Product found',
-      payload: product
-    });
+      payload: product,
+    })
   } catch (error) {
-    next(error);
+    next(error)
   }
-};
+}
 
 export const deleteSingleProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
