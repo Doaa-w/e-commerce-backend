@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { rateLimit } from 'express-rate-limit';
 
-import { login, logout } from '../controller/auth';
+import { login, logout } from '../controller/authController';
 import { isLoggedOut } from '../middlewares/auth';
 
 const router = Router();

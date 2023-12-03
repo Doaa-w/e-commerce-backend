@@ -2,7 +2,7 @@ import { Request } from "express";
 import bcrypt from 'bcrypt';
 
 import ApiError from "../errors/ApiError";
-import User from "../models/user";
+import User from "../models/userSchema";
 
 export const verifyUserData = async (req: Request) => {
     const { email, password } = req.body;

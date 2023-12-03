@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 
 import ApiError from '../errors/ApiError';
-import User from '../models/user';
+import User from '../models/userSchema';
 import { verifyToken } from '../util/verifyToken';
 
 interface CustomRequest extends Request {
@@ -41,7 +41,7 @@ export const isLoggedOut = (req: Request, res: Response, next: NextFunction) => 
 export const isAdmin = async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
         const user = await User.findById(req.userId);
-        if (!user?.isAdmin) {
+        if (user?.isAdmin) {
             throw new ApiError(403, "You are not authorized to access this route");
         }
         next();

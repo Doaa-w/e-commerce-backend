@@ -1,7 +1,7 @@
 import slugify from 'slugify';
 
-import Product from '../models/product';
-import { IProduct, ProductInput, ProductType } from '../types/product';
+import Product from '../models/productSchema';
+import { IProduct, ProductInput, ProductType } from '../types/productType';
 
 import ApiError from '../errors/ApiError';
 // import { createHttpError } from '../util/createHttpError';
@@ -37,7 +37,7 @@ export const getSingleProduct = async (slug: any) => {
     updatedAt: 0,
     __v: 0
   }
-  const product = await Product.findOne({ slug: slug }, options);
+  const product = await Product.findOne({ slug: slug }, options).populate('category');
   if (!product) {
     throw new ApiError(404, 'Product not found!');
   }

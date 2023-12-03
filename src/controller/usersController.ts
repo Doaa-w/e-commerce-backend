@@ -2,12 +2,12 @@ import { Request, Response , NextFunction } from "express";
 import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
-import User from "../models/user";
-import { findAllUsers, findSingleUser, isUserExist, isTokenExist, updateSingleUser, removeUser, updateBanStatus } from "../services/user";
+import User from "../models/userSchema";
+import { findAllUsers, findSingleUser, isUserExist, isTokenExist, updateSingleUser, removeUser, updateBanStatus } from "../services/userService";
 import { handleSendEmail } from "../helper/sendEmail";
 import { generateToken } from "../util/generateToken";
 import { verifyToken } from "../util/verifyToken";
-import { EmailDataType, UserInputType } from "../types/user";
+import { EmailDataType, UserInputType } from "../types/userType";
 import ApiError from "../errors/ApiError";
 
 export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
@@ -58,9 +58,7 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
 
             <p>Thank you for signing up for our shop. We are excited to have you on board!
             To complete your account activation, please <a href="http://localhost:8080/api/users/activate/${token}">Click Here</a>.</p>
-            
             <p>If you did not sign up for an account or received this email by mistake, please disregard it.</p>
-            
             <h4>Welcome aboard, and thank you for choosing our shop!</h4>
             `
         };
@@ -121,13 +119,14 @@ export const deleteUserById = async (req: Request, res: Response, next: NextFunc
 export const banUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const id = req.params.id;
-        const user = await updateBanStatus(id, true);
+        const isBanned = req.body.isBanned;
+        const user = await updateBanStatus(id, isBanned);
         if (user.isBanned) {
             res.status(200).send({
                 message: 'The user has been successfully banned',
             });
         }
-        else if (!user.isBanned) {
+        else {
             res.status(200).send({
                 message: 'The user has been successfully unbanned',
             });

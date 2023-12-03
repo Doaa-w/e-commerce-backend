@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model } from 'mongoose';
 
-import { IProduct } from '../types/product'
-import { IOrder } from '../types/order'
+import { IProduct } from '../types/productType';
+import { IOrder } from '../types/orderType';
 
 const orderSchema = new Schema(
   {
@@ -24,4 +24,4 @@ orderSchema.path('products').validate(function (value: IProduct['slug'][]) {
   return value.length >= 1
 }, 'Must have at least one product')
 
-export const Order = model<IOrder>('Order', orderSchema)
+export const Order = model<IOrder>('Order', orderSchema);

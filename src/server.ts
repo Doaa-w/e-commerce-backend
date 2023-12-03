@@ -5,15 +5,15 @@ import morgan from 'morgan';
 import { dev } from './config';
 import { connectDB } from './config/db';
 
-import authRouter from './routers/auth';
-import productsRouter from './routers/products';
-import usersRouter from './routers/users';
-import ordersRouter from './routers/orders';
-import categoriesRouter from './routers/categories';
+import authRouter from './routers/authRoute';
+import productsRouter from './routers/productsRoute';
+import usersRouter from './routers/usersRoute';
+import ordersRouter from './routers/ordersRoute';
+import categoriesRouter from './routers/categoriesRoute';
 
 import myLogger from './middlewares/logger';
 import { apiErrorHandler } from './middlewares/errorHandler';
-import { createHttpError } from './util/createHttpError';
+// import { createHttpError } from './util/createHttpError';
 
 const app: Application = express();
 const port: number = dev.app.port;
@@ -35,9 +35,9 @@ app.listen(port, async () => {
   connectDB();
 });
 
-app.use((res, req, next) => {
-  const error = createHttpError(404, 'Router no found');
-  next(error);
-});
+// app.use((res, req, next) => {
+//   const error = createHttpError(404, 'Router no found');
+//   next(error);
+// });
 
 app.use(apiErrorHandler);
