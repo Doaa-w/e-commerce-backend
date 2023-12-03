@@ -7,10 +7,8 @@ import {
   getProducts,
   getSingleProduct,
   updateProduct,
-} from '../services/product';
-
-import Product from '../models/product';
-
+} from '../services/productService';
+import Product from '../models/productSchema';
 import { dev } from '../config';
 import ApiError from '../errors/ApiError';
 import { createHttpError } from '../util/createHttpError';
@@ -92,24 +90,19 @@ export const updateSingleProduct = async (req: Request, res: Response, next: Nex
     next(error);
   }
 };
-  // filter part : 
-  
+
+// filter part : 
 export const getFilteredProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { category, priceRangeMin, priceRangeMax } = req.query;
-
     const filter: any = {};
-
     if (category) {
       filter.category = category;
     }
-
     if (priceRangeMin && priceRangeMax) {
       filter.price = { $gte: Number(priceRangeMin), $lte: Number(priceRangeMax) };
     }
-
     const products = await Product.find(filter);
-
     res.status(200).json({
       message: 'Returns filtered products',
       payload: products,

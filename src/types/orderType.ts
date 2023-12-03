@@ -1,8 +1,7 @@
-import { Document } from 'mongoose'
+import { Document } from 'mongoose';
 
-
-import { UserType } from '../types/user'
-import { IProduct } from '../types/product'
+import { UserType } from './userType';
+import { IProduct } from './productType';
 
 export interface IOrder extends Document {
     _id: string;
@@ -11,4 +10,4 @@ export interface IOrder extends Document {
     createdAt?: Date;
     updatedAt?: Date;
     __v: number;
-}
+};

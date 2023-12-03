@@ -1,4 +1,4 @@
-import { Error } from "../types/error";
+import { Error } from "../types/errorType";
 
 export const createHttpError = (status: number, message: string) => {
   const error: Error = new Error();

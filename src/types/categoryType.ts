@@ -4,7 +4,7 @@ export type categoryI = {
     slug: string;
     createdAt?: Date;
     updatedAt?: Date;
-}
+};
   
 export type CategoryInput = Omit<categoryI, '_id'>;
 
@@ -12,4 +12,4 @@ export interface ICategory extends Document {
     _id: string;
     title: string;
     slug: string;
-}
+};

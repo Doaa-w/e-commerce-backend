@@ -1,17 +1,18 @@
 import { Request, Response , NextFunction } from "express";
+import jwt from 'jsonwebtoken';
 
-import { verifyUserData } from "../services/auth";
-import { generateToken } from "../util/generateToken";
+import { verifyUserData } from "../services/authService";
+import { dev } from '../config';
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const user = await verifyUserData(req);
-        const accessToken = generateToken(user._id);
+        const accessToken = jwt.sign({ _id: user._id }, dev.app.jwtUserAccessKey, { expiresIn: '10m' });
         res.cookie(
             'access_token',
              accessToken,
              {
-                maxAge: 30 * 60 * 1000, // 30 minutes
+                maxAge: 10 * 60 * 1000, // 10 minutes
                 httpOnly: true,
                 sameSite: 'none'
             });

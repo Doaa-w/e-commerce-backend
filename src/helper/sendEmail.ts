@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 
 import { dev } from '../config';
-import { EmailDataType } from '../types/user';
+import { EmailDataType } from '../types/userType';
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',

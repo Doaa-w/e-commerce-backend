@@ -2,12 +2,10 @@ import { Request, Response, NextFunction } from "express";
 
 import { createTheCategory, deleteTheCategory, getAllTheCategory, getTheCategory, updateTheCategory } from "../services/categoryService";
 
-
-
 export const getAllCategories =  async (req: Request , res: Response , next:NextFunction)=>{
     try {
       const search = req.query.search as string;
-      const categories = await getAllTheCategory();
+      const categories = await getAllTheCategory(search);
       res.status(200).json({message: 'all categories are here' , payload: categories});
     } catch (error) {
         next(error);
@@ -50,9 +48,11 @@ export const deleteCategory = async (req: Request, res: Response, next: NextFunc
   }
 };
 
-export const updateCategory = async (req: Request, res: Response, next: NextFunction) => {
+export const updateCategory =  async (req: Request , res: Response , next:NextFunction)=>{
   try {
-    const updatedCategory = await updateTheCategory(req);
+    const slug =req.params.slug;
+    const updateCategoryData= req.body;
+    const updatedCategory= await updateTheCategory(slug , updateCategoryData);
     res.status(200).json({
       message: "the category is updated",
       payload: updatedCategory

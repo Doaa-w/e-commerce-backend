@@ -1,7 +1,7 @@
 import { Request } from "express";
 
 import ApiError from "../errors/ApiError";
-import User from "../models/user";
+import User from "../models/userSchema";
 
 export const findAllUsers = async () => {
     const filter = {
@@ -12,7 +12,7 @@ export const findAllUsers = async () => {
         updatedAt: 0,
         __v: 0
     }
-    const users = await User.find(filter, options)/*.populate('Order')*/;
+    const users = await User.find(filter, options)/*.populate('Order')*/.sort({first_name: 1});
     return users;
 };
 

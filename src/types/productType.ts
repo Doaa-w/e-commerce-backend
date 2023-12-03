@@ -1,4 +1,4 @@
-import { ICategory } from "./category";
+import { ICategory } from "./categoryType";
 
 export type ProductType = {
     _id: string;
@@ -13,7 +13,7 @@ export type ProductType = {
     image?: string;
     createdAt?: Date;
     updatedAt?: Date;
-}
+};
   
 export type ProductInput = Omit<ProductType, '_id'>;
   
@@ -30,4 +30,4 @@ export interface IProduct extends Document {
     description: string;
     createAt?: string;
     updatedAt?: string;
-}
+};

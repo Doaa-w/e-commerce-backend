@@ -1,4 +1,4 @@
-import { IOrder } from "./order";
+import { IOrder } from "./orderType";
 
 export type UserType = {
     _id: string;
@@ -8,12 +8,12 @@ export type UserType = {
     password: string;
     phone: string;
     address?: string;
-    order?: IOrder;
+    order?: IOrder['_id'][];
     isAdmin?: boolean;
     isBanned?: boolean;
     createdAt?: Date;
     updatedAt?: Date;
-}
+};
   
 export type UserInputType = Omit<UserType, '_id'>;
 
@@ -21,5 +21,5 @@ export type EmailDataType = {
     email: string;
     subject: string;
     html: string;
-}
+};
 
