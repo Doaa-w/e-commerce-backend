@@ -1,4 +1,6 @@
 import slugify from 'slugify';
+import fs from 'fs'
+import path from 'path'
 
 import Product from '../models/productSchema';
 import { IProduct, ProductInput, ProductType } from '../types/productType';
@@ -44,12 +46,39 @@ export const getSingleProduct = async (id: string) => {
   return product
 }
 
-export const deleteProduct = async (id: any) => {
-  const deletedProduct = await Product.findByIdAndDelete(id)
-  if (!deletedProduct) {
+
+
+export const deleteProduct = async (slug: string) => {
+  const product = await Product.findOne({ slug: slug })
+  if (!product) {
     throw new ApiError(404, 'Product not found!')
   }
+//! Error here fix it later 
+  if (product.image) {
+    const imagePath = path.join(
+      __dirname,
+      'public',
+      'images',
+      'products',
+      product.image
+    )
+
+    if (fs.existsSync(imagePath)) {
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          console.error('Failed to delete the image file:', err)
+        }
+      })
+    } else {
+      console.log('No file found to delete at:', imagePath)
+    }
+  }
+
+
+  await Product.findByIdAndDelete(product._id)
 }
+
+
 
 export const createProduct = async (productInput: ProductInput): Promise<IProduct> => {
   const { title, price, image, description, quantity, category, sold, shipping } = productInput;
@@ -72,17 +101,20 @@ export const createProduct = async (productInput: ProductInput): Promise<IProduc
 };
 
 export const updateProduct = async (originalSlug: any, updateProductData: ProductType) => {
-  const productExists = await Product.findOne({ slug: originalSlug });
+  const productExists = await Product.findOne({ slug: originalSlug })
   if (!productExists) {
-    throw new ApiError(404, 'Product not found!');
+    throw new ApiError(404, 'Product not found!')
+  }
+  if (updateProductData.image) {
+    productExists.image = updateProductData.image
   }
   if (updateProductData.title && updateProductData.title !== productExists.title) {
     updateProductData.slug = slugify(updateProductData.title, {
       lower: true,
-    });
+    })
   }
   const updatedProduct = await Product.findOneAndUpdate({ slug: originalSlug }, updateProductData, {
     new: true,
-  });
-  return updatedProduct;
-};
+  })
+  return updatedProduct
+}
