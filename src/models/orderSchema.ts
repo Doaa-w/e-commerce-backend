@@ -33,17 +33,17 @@ const orderSchema = new Schema(
     },
     ],
    // payment: { type: Object, required: true},
-    buyer: { type: Schema.Types.ObjectId, ref: 'User', required: true},
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true},
     status: {
       type: String,
       enum: [
-      "Not processes",
+      "Not processed",
       "Processing",
       "shipped",
       "delivered",
       "cancelled",
       ],
-      default: 'not processed'
+      default: 'Not processed'
     },
   },
   { timestamps: true }

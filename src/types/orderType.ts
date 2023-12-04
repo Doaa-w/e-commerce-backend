@@ -13,9 +13,9 @@ export interface IOrder extends Document {
     __v: number;*/
     products: IOrderProduct[];
     //payment: IorderPayment;
-    buyer: IUser['_id'];
+    user: IUser['_id'];
     status:
-    "Not processes"
+    "Not processed"
     | "Processing"
     | "shipped"
     | "delivered"
