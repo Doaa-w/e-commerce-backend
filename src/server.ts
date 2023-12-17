@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import cors from 'cors';
 
 import { dev } from './config';
 import { connectDB } from './config/db';
@@ -18,17 +19,21 @@ import { apiErrorHandler } from './middlewares/errorHandler';
 const app: Application = express();
 const port: number = dev.app.port;
 
+app.use('/public' , express.static('public'));
 app.use(myLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.use(cors());
 
 app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/categories', categoriesRouter);
+
+
 
 app.listen(port, async () => {
   console.log('Server running at http://localhost:' + port);

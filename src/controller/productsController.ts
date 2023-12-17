@@ -19,6 +19,7 @@ export const getAllProducts = async (req: Request, res: Response, next: NextFunc
     const limit = Number(req.query.limit)
     const search = req.query.search as string
     const result = await getProducts(page, limit, search)
+    console.log(result)
     res.status(200).json({
       message: 'Returns all products',
       // payload: result.products,

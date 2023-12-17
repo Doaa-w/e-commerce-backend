@@ -38,6 +38,7 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
 export const register = async (req: Request, res: Response, next:NextFunction) => {
     try {
         const { first_name, last_name, email, password, phone, address } = req.body;
+        console.log(req.body)
         await isUserExist(email);
         const hashedPassword = await bcrypt.hash(password, 10);
         const tokenPayload: UserInputType = {
@@ -69,6 +70,7 @@ export const register = async (req: Request, res: Response, next:NextFunction) =
         });
     } catch(error) {
         next(error);
+        console.log(error)
     }
 };
 
