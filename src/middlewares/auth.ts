@@ -15,7 +15,7 @@ export const isLoggedIn = (req: CustomRequest, res: Response, next: NextFunction
         if (!accessToken) {
             throw new ApiError(401, "You are not logged in");
         }
-        const decodedAccessToken = jwt.verify(accessToken, dev.app.jwtUserAccessKey) as JwtPayload;
+        const decodedAccessToken = jwt.verify(accessToken, String(dev.app.jwtUserAccessKey)) as JwtPayload;
         if (!decodedAccessToken) {
             throw new ApiError(401, "Invalid access token");
         }
