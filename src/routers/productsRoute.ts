@@ -19,7 +19,7 @@ const router = Router()
 router.get('/', getAllProducts)
 router.get('/:id', getSingleProductById)
 router.get('/filtered-products', getFilteredProducts)
-router.post('/', /*isLoggedIn, isAdmin,*/ upload.single('image'), ProductValidation, runValidation, createSingleProduct)
+router.post('/', isLoggedIn, isAdmin, upload.single('image'), ProductValidation, runValidation, createSingleProduct)
 router.put('/:slug',/* isLoggedIn, isAdmin,*/ upload.single('image'), updateProductValidation, runValidation, updateSingleProduct)
 router.delete('/:slug', /*isLoggedIn, isAdmin,*/ deleteSingleProducts)
 

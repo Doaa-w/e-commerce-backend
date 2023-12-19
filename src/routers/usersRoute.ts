@@ -7,7 +7,7 @@ import { runValidation } from '../validation/runValidation';
 
 const router = Router();
 
-router.get('/', /*isLoggedIn, isAdmin,*/ getAllUsers);
+router.get('/',  isLoggedIn, isAdmin,  getAllUsers);
 router.get('/:id',/*isLoggedIn,*/ getUserById);
 router.post('/register',/* isLoggedOut,*/ userValidation, runValidation, register);
 router.post('/activate-account',/* isLoggedOut,*/ activateUserAccount);
