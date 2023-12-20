@@ -19,13 +19,16 @@ import { apiErrorHandler } from './middlewares/errorHandler';
 const app: Application = express();
 const port: number = dev.app.port;
 
-app.use('/public' , express.static('public'));
+
 app.use(myLogger);
+app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use('/public' , express.static('public'));
 app.use(morgan('dev'));
-app.use(cookieParser());
-app.use(cors());
+
+
 
 app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
