@@ -5,7 +5,7 @@ const productStorge = multer.diskStorage({
     cb(null, "public/images/products");
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
+    cb(null, Date.now().toString().replace(/\\/g, "/") + '-' + file.originalname);
   }
 });
 

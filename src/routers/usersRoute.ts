@@ -7,12 +7,12 @@ import { runValidation } from '../validation/runValidation';
 
 const router = Router();
 
-router.get('/',  isLoggedIn, isAdmin,  getAllUsers);
-router.get('/:id',/*isLoggedIn,*/ getUserById);
-router.post('/register',/* isLoggedOut,*/ userValidation, runValidation, register);
-router.post('/activate-account',/* isLoggedOut,*/ activateUserAccount);
-router.put('/:id', /*isLoggedIn,*/ updateUserValidation, runValidation, updateUserById);
-router.delete('/:id',/* isLoggedIn, isAdmin,*/ deleteUserById);
-router.put('/ban/:id', isLoggedIn, isAdmin, banUser);
+router.get('/',    getAllUsers);
+router.get('/:id', getUserById);
+router.post('/register',  isLoggedOut,  userValidation, runValidation, register);
+router.post('/activate-account',  isLoggedOut, activateUserAccount);
+router.put('/:id', updateUserValidation, runValidation, updateUserById);
+router.delete('/:id',  deleteUserById);
+router.put('/ban/:id', banUser);
 
 export default router;
