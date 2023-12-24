@@ -83,9 +83,9 @@ export const updateSingleProduct = async (req: Request, res: Response, next: Nex
     const originalSlug = req.params.slug
     let updateProductData = req.body
 
-    if (req.file) {
-      updateProductData.image = `/images/products/${req.file.filename}`
-    }
+    // if (req.file) {
+    //   updateProductData.image = `/images/products/${req.file.filename}`
+    // }
 
     const updatedProduct = await updateProduct(originalSlug, updateProductData)
     res.status(200).json({

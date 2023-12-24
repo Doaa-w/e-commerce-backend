@@ -3,7 +3,7 @@ import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 import User from "../models/userSchema";
-import { findAllUsers, findSingleUser, isUserExist, isTokenExist, updateSingleUser, removeUser, updateBanStatus } from "../services/userService";
+import { findAllUsers, findSingleUser, isUserExist, isTokenExist, updateSingleUser, removeUser, updateBanStatus, updateRoleById } from "../services/userService";
 import { handleSendEmail } from "../helper/sendEmail";
 import { generateToken } from "../util/generateToken";
 import { verifyToken } from "../util/verifyToken";
@@ -117,6 +117,17 @@ export const deleteUserById = async (req: Request, res: Response, next: NextFunc
         next(error);
     }
 };
+
+export const updateRole = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      await updateRoleById(req.params.id);
+      res.status(200).send({
+        message: 'The user has been successfully Admin',
+    });
+    } catch (error) {
+        next(error);
+    }
+}
 
 export const banUser = async (req: Request, res: Response, next: NextFunction) => {
     try {

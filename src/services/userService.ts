@@ -65,3 +65,6 @@ export const updateBanStatus = async (id: string, isBanned: boolean) => {
     }
     return user;
 };
+export const updateRoleById = async(id:string)=>{
+    const user =await User.findByIdAndUpdate(id , {isAdmin: true});
+}
